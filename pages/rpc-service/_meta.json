@@ -1,0 +1,13 @@
+{
+  "getting-started": "Getting Started",
+  "tech-stuff": "Tech Stuff",
+  "service-plans": "Service Plans",
+  "pricing": "Pricing",
+  "hybrid-infrastructure": "Hybrid Infrastructure",
+  "card-flow": {
+    "title": "Card Flow",
+    "type": "page",
+    "hidden": true
+  },
+  "chains": "Supported Chains"
+}
