@@ -8,12 +8,9 @@ on:
         description: Target
         required: true
         options:
-          - STAGE # www-stage.ankr.com/docs/
-          - BS1 # bs-1-stage.dccn.ankr.com/docs/
-          - BS2 # bs-2-stage.dccn.ankr.com/docs/
-          - BS3 # bs-3-stage.dccn.ankr.com/docs/
-          - BS4 # bs-4-stage.dccn.ankr.com/docs/
-          - PROD # www.ankr.com/docs/
+          - STAGE # https://www-stage.ankr.com/docs/
+          - BS1 # https://bs-1-stage.dccn.ankr.com/docs/
+          - PROD # https://mirage.xyz/docs//docs/
 
 jobs:
   deploy:
