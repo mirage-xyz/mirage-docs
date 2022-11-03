@@ -9,7 +9,7 @@ The docs are built on [Nextra](https://nextra.vercel.app/) — a Next.js based s
 
 ## Contribute to the project as an end-user
 
-As an ever-developing company, we welcome you to contribute to Ankr Docs — via feedback raising an issue or a pull request adding/updating content.
+As an ever-developing company, we welcome you to contribute to Mirage Docs — via feedback raising an issue or a pull request adding/updating content.
 
 As raising an issue and describing a problem is pretty self-explanatory, let's jump straight to adding/updating content.
 
@@ -44,8 +44,8 @@ If you're an Ankr user, use the GitHub web interface:
 Now, if you're with us, you know to uphold our standards. 
 
 If you are new to them, here are the guidelines:
-1. Get acquainted with Ankr Docs gitflow.
-2. Get acquainted with Ankr Docs deploying routine.
+1. Get acquainted with Mirage Docs gitflow.
+2. Get acquainted with Mirage Docs deploying routine.
 3. Remember our internal branch naming and pull request policy.
 4. Clone the repo.
 5. Create a new branch branching off from **stage**.
@@ -98,18 +98,18 @@ To deploy:
    * `hotfix` — on-the-spot updates
 
    Naming examples:
-   * `feature/FOOBAR-1-create-ankr-staking-docs`
+   * `feature/FOOBAR-1-create-mirage-unrealsdk-docs`
    * `bugfix/FOOBAR-2-fix-typos`
-   * `hotfix/FOOBAR-3-update-sc-addresses-for-staking`
+   * `hotfix/FOOBAR-3-update-getting-started-for-unitysdk-docs`
 
 3. Follow the **pull request naming format**.
 
    The common pattern for a pull request title or commit message is `<type>[optional scope]: <TASK-000 description>`.
 
    Naming examples:
-   * `feat: FOOBAR-555 add docs for Ankr Protocol`
+   * `feat: FOOBAR-555 add docs for Unity SDK`
    * `fix(Fantom staking): FOOBAR-666 fix typos`
-   * `chore: FOOBAR-777 update smart contract addresses for Ankr Staking`
+   * `chore: FOOBAR-777 update SDK methods for Unreal`
    
 4. Make sure the **Assignee** is you and there are two **labels** — **documentation** and a section-specific label (e.g. **staking**). 
 
@@ -117,7 +117,7 @@ To deploy:
 ### Clone the repo
 
 ```shell
-git clone git@github.com:Ankr-network/ankr-docs.git && cd ankr-docs
+git clone git@github.com:mirage-xyz/mirage-docs.git && cd mirage-docs
 ```
 
 ### Create a new branch off **stage**

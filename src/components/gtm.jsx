@@ -1,6 +1,6 @@
 import TagManager from 'react-gtm-module';
 
-const GTM_ID = 'GTM-5TQM7WF';
+const GTM_ID = '';
 
 const tagManagerArgs = {
   gtmId: GTM_ID,
