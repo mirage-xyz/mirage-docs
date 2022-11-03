@@ -1,8 +1,8 @@
-# Ankr Docs
-Ankr is the leading Web3 infrastructure company. It provides all the necessary blockchain infrastructure and services for companies to build new and bring their existing projects to Web3.
+# Mirage Docs
 
-Ankr Docs contain information on Ankr, from general product information to user guides, SDK documentation, API references, RPC methods, Web3 tutorials, developer guides, and more.
-The docs are targeted at existing and potential Ankr users and explain what different products do and how to use them, both as an end-user or developer.  
+Mirage platform is an access point to a complete set of battle-tested solutions to build, power up, scale, support, and publish your Web3 games. First things first, we have SDKs to integrate with the platform and enable your game with the Web3 capabilities.
+
+Mirage Docs provides information on using Web3 SDKs for the two well-known gaming engines — _Unity_ and _Unreal Engine_.  
 
 The docs are built on [Nextra](https://nextra.vercel.app/) — a Next.js based static site generator.
 
@@ -15,25 +15,32 @@ As raising an issue and describing a problem is pretty self-explanatory, let's j
 
 
 ### Adding/updating content
+
 Adding/updating content is done via pull requests to this repo.
+
 If you're in the mood to improve our content:
+
 1. Understand the pull request policy.
 2. Work with the content either via the GitHub web interface or clone-commit-push. 
 
 
 #### Pull request policy
+
 We do not pose a strict policy on pull requests. 
 
 
-#### Work with the content
+#### Contribution flow for external users
+
 If you're an Ankr user, use the GitHub web interface:
+
 1. Go to the **pages** folder and either see what subfolder you need to add a new .md file or navigate to the .md file that you want to edit. 
 2. Click **Add file** to add a new file or click the pencil icon to edit an existing file.
 3. Fill the newly created file with content or edit the content in the existing file you opened.
 4. When done, commit the changes **to a new branch**. A pull request will be created automatically.
 
 
-## Contribute to the project as an Ankr employee 
+## Contribution flow for Ankr employees
+
 Now, if you're with us, you know to uphold our standards. 
 
 If you are new to them, here are the guidelines:
@@ -52,7 +59,9 @@ If you are new to them, here are the guidelines:
 
 
 ### Gitflow
+
 Currently, we're using the following Gitflow:
+
 1. Create a feature branch from the `stage` branch. Use the branch naming format described further in this doc.
 2. Work on the documentation for the feature.
 3. When done, test your documentation deploying it to `STAGE`.
@@ -64,7 +73,9 @@ Currently, we're using the following Gitflow:
 
 
 ### Deploying routine
+
 To deploy:
+
 1. Navigate to the Actions tab on the repo page.
 2. Under `All workflows`, on the left, click `Deploy`.
 3. Click the `Run workflow` button on the right, then choose the branch and environment to deploy to.
@@ -74,6 +85,7 @@ To deploy:
 
 
 ### Internal branch and pull request policy
+
 1. Branch off from **stage**.
 
 2. Follow the **branch naming format**. 
@@ -147,17 +159,22 @@ yarn dev
 FYI, it's `http://localhost:3016/docs/`.
 
 
-### Work with the content and resources in your favorite IDE.
+### Work with the content and resources in your favorite IDE
+
 Yeah, work that sweet content!
 
 
 ### Test your work, deploying it to a staging server
+
 Remember that deploying routine above? Follow it.
 
 
 ### Merge your changes
+
 Remember that pull request policy above?
+
 Let's sum it up:
+
 1. For the love of code, follow the pull request policy, or I will come to you in your dreams! 
 2. Merge your branch to **stage**.
 3. If **stage** doesn't have any other unfinished work and is ready for prod, merge **stage** into **main**.

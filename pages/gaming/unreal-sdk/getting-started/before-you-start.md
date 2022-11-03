@@ -5,14 +5,14 @@
 
 ## Components interaction
 
-AnkrSDK enables interacting with the blockchain for the latest Unreal Engine 5+.
+Mirage SDK enables interacting with the blockchain for the latest Unreal Engine 5+.
 
 The interaction components are the following:
 
 * Frontend: Unreal Engine 5+
 * Backend:
   * Unreal Engine uses Ankr API to interact with the blockchain.
-  * Ankr handles the Unreal Engine to blockchain communication.
+  * Mirage handles the Unreal Engine to blockchain communication.
 
 ## SDK's functionality
 

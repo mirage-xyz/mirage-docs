@@ -1,4 +1,4 @@
-# Ankr's Mirage Gaming
+# Mirage Gaming
 
 *Mirage platform* is an access point to a complete set of battle-tested solutions to build, power up, scale, support, and publish your Web3 games. First things first, we have SDKs to integrate with the platform and enable your game with the Web3 capabilities.
 
