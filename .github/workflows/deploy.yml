@@ -10,7 +10,7 @@ on:
         options:
           - STAGE # https://www-stage.ankr.com/docs/
           - BS1 # https://bs-1-stage.dccn.ankr.com/docs/
-          - PROD # https://mirage.xyz/docs//docs/
+          - PROD # https://mirage.xyz/docs/
 
 jobs:
   deploy:
