@@ -16,7 +16,7 @@ const nextConfig = {
     disableStaticImages: true,
   },
   trailingSlash: true,
-  //assetPrefix: isProd ? 'https://ankr.com/docs' : undefined,
+  //assetPrefix: isProd ? 'https://mirage.xyz/docs' : undefined,
   basePath: '/docs',
 };
 

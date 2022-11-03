@@ -1,3 +1,6 @@
 {
-  "gaming": "Gaming"
+  "index": "Welcome to Mirage Docs",
+  "unity-sdk": "Unity SDK",
+  "unreal-sdk": "Unreal Engine SDK",
+  "extra": "Extra"
 }

@@ -1,16 +1,15 @@
 {
-  "name": "ankr-docs",
+  "name": "mirage-docs",
   "version": "1.0.0",
   "description": "Mirage Docs",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "npm run update-strapi-faq-files && next build && next export",
+    "build": "next build && next export",
     "debug": "NODE_OPTIONS='--inspect' next",
-    "dev": "npm run update-strapi-faq-files && next -p 3016",
-    "start": "npm run update-strapi-faq-files && next start",
-    "start:css": "tailwindcss -o styles/global.css --watch",
-    "update-strapi-faq-files": "node ./scripts/update-strapi-faq-files.js"
+    "dev": "next -p 3016",
+    "start": "next start",
+    "start:css": "tailwindcss -o styles/global.css --watch"
   },
   "author": "raproid at Ankr",
   "license": "MIT",
