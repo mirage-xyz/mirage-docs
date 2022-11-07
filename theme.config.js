@@ -38,7 +38,7 @@ export default {
       config.frontMatter.description ? config.frontMatter.description : "Mirage is the leading game services platform for Web3.";
     const image =
       config.frontMatter.image ||
-      "https://pbs.twimg.com/media/FZvncdhWAAA-hxK.jpg";
+      "https://mirage.xyz/static/logo.png";
     return (
       <>
          {/* General */}
