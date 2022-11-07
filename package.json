@@ -7,7 +7,7 @@
   "scripts": {
     "build": "next build && next export",
     "debug": "NODE_OPTIONS='--inspect' next",
-    "dev": "next -p 3016",
+    "dev": "next",
     "start": "next start",
     "start:css": "tailwindcss -o styles/global.css --watch"
   },
