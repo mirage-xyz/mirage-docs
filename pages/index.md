@@ -4,7 +4,7 @@
 
 ## SDKs
 
-Currently, we provide Web3 SDKs for the two well-known gaming engines — _Unity_ and _Unreal Engine_.
+Currently, we provide *Web3 SDKs* for two well-known gaming engines — _Unity_ and _Unreal Engine_.
 
 ### SDKs Feature Set
 
