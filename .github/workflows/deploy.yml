@@ -8,7 +8,7 @@ on:
         description: Target
         required: true
         options:
-          - STAGE # https://www-stage.ankr.com/docs/
+          - STAGE # https://stage.mirage.xyz/docs/
           - BS1 # https://bs-1-stage.dccn.ankr.com/docs/
           - PROD # https://mirage.xyz/docs/
 
