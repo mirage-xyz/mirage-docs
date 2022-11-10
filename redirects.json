@@ -1,6 +1,6 @@
 [
   {
-    "from": "docs",
-    "to": "/docs/"
+    "from": "old_path/index.html",
+    "to": "/new_path/"
   }
 ]
