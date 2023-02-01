@@ -102,12 +102,12 @@ A class for retrieving data from the Aptos node.
 
 **Inherited members**:
 
-System.Object.ToString()
-System.Object.Equals(System.Object)
-System.Object.Equals(System.Object, System.Object)
-System.Object.ReferenceEquals(System.Object, System.Object)
-System.Object.GetHashCode()
-System.Object.GetType()
+System.Object.ToString()  
+System.Object.Equals(System.Object)  
+System.Object.Equals(System.Object, System.Object)  
+System.Object.ReferenceEquals(System.Object, System.Object)  
+System.Object.GetHashCode()  
+System.Object.GetType()  
 System.Object.MemberwiseClone()
 
 **Syntax**:
