@@ -1,10 +1,10 @@
 ## Installation
 
-To install advertisements package, you have to include the `AnkrSDK/Scripts/Ads` folder. `AnkrSDK.asmdef` is an assembly that will contain any required code for ads to work.
+To install advertisements package, you have to include the `MirageSDK/Runtime/Ads` folder. `MirageSDK.asmdef` is an assembly that will contain any required code for ads to work.
 
 ##  Standalone/WebGL
 
-For now, any non-mobile platform supports only banner/raw texture advertisements. Implementation is provided via the `AnkrAds.dll` library.
+For now, any non-mobile platform supports only banner/raw texture advertisements. Implementation is provided via the `MirageAds.dll` library.
 
 ## Android
 Implementation is provided via the `nativeads.aar` file.
@@ -13,15 +13,15 @@ Implementation is provided via the `nativeads.aar` file.
 
 Implementation is provided via the `AdsBridge.framework` and `ANKR_adlibrary.framework`. Device SDK only. IOS Platform 13.0+ is required.
 
-## `AnkrAdvertisements`
+## `MirageAdvertisements`
 
-Usage of advertisements inside Gaming UnitySDK comes down to interaction with the `AnkrAdvertisements` class.
+Usage of advertisements inside Gaming UnitySDK comes down to interaction with the `MirageAdvertisements` class.
 
 ### Methods
 
 To begin your advertisements session, call the `Initialize` method. This will initialize a current user, making it possible to load and show ads.
 
-```c plus
+```csharp
 void Initialize(string appId, string accountAddress)
 ```
 
@@ -31,13 +31,13 @@ If called `LoadAd`, we request to load an advertisement by `unitId` that you can
 
 After request is sent, your image or video ad will be preloaded and cached.
 
-```c plus
+```csharp
 void LoadAd(string unitId)
 ```
 
 Same as `LoadAd` but it returns only an image as we do not yet support in-game video ads.
 
-```c plus
+```csharp
 void ShowAd(string unitId)
 ```
 
@@ -47,61 +47,61 @@ There is a list of events that you can use to control the flow of your Advertise
 
   * Those events are to be called after advertisement service has finished initializing:
 
-```c plus
+```csharp
 event Action AdInitialized;
 ```
 
   * To be called after a requested ad has loaded. Returns `UnitId` as a parameter:
 
-```c plus
+```csharp
 event Action<string> AdLoaded;
 ```
 
   * If the ad fails to load, the localized error message returns as a parameter:
 
-```c plus
+```csharp
 event Action<string> AdFailedToLoad;
 ```
 
   * If a fullscreen ad with `unitId` has been clicked on during being shown, this event is called:
 
-```c plus
+```csharp
 event Action<string> AdClicked;
 ```
 
   * If the requested fullscreen ad has been successfully show to the user, this event is called:
 
-```c plus
+```csharp
 event Action AdOpened;
 ```
 
   * The user closes a fullscreen ad:
 
-```c plus
+```csharp
 event Action AdClosed;
 ```
 
   * The user has completely finished watching the ad:
 
-```c plus
+```csharp
 event Action AdFinished;
 ```
 
   * If the user has watched the fullscreen ad for the time required to be rewarded:
 
-```c plus
+```csharp
 event Action<string> AdRewarded;
 ```
 
   * To be called after you call `LoadAd`/`LoadAdTexture` and receive that the ad data belongs to an image type. In this case, the `unitId` + `texture` data are to be returned as parameters:
 
-```c plus
+```csharp
 event Action<string, byte[]> AdTextureReceived;
 ```
 
   * A general error type has occurred during the ad service work. A localized error message returns as a parameter:
 
-```c plus
+```csharp
 event Action<string> Error;
 ```
 

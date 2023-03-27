@@ -1,19 +1,19 @@
 import { Callout } from "components";
 
-## `AnkrSDKFactory`
+## `MirageSDKFactory`
 
 A class for SDK instance creation.
 
 ### Static methods
 
-  * [`GetAnkrSDKInstance`](#getankrsdkinstance) — creates an SDK instance with a given argument.
+  * [`GetMirageSDKInstance`](#getmiragesdkinstance) — creates an SDK instance with a given argument.
 
-### `GetAnkrSDKInstance`
+### `GetMirageSDKInstance`
 
 #### Declaration
 
-> `IAnkrSDK GetAnkrSDKInstance(string providerURI)` OR<br/>
-> `IAnkrSDK GetAnkrSDKInstance(NetworkName networkName)`
+> `IMirageSDK GetMirageSDKInstance(string providerURI)` OR<br/>
+> `IMirageSDK GetMirageSDKInstance(NetworkName networkName)`
 
 **Parameters**:
 
@@ -22,24 +22,24 @@ A class for SDK instance creation.
 
 #### Returns
 
-  * `IAnkrSDK` — an SDK provider instance. 
+  * `IMirageSDK` — an SDK provider instance. 
 
 Creates an SDK instance with a provider URL or network name specified.
 
 #### Code example
 
-```c plus
-using AnkrSDK.Data;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Data;
+using MirageSDK.Provider;
 using UnityEngine;
 
 public class CreateSDKExample : MonoBehaviour
 {
 	private void Start()
 	{
-		var ankrSDKByProvider = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
+		var mirageSDKByProvider = MirageSDKFactory.GetMirageSDKInstance("http://...");
 		// or
-		var ankrSDKByNetwork = AnkrSDKFactory.GetAnkrSDKInstance(NetworkName.Ethereum);
+		var mirageSDKByNetwork = MirageSDKFactory.GetMirageSDKInstance(NetworkName.Ethereum);
 	}
 }
 ```

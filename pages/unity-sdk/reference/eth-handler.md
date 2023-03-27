@@ -30,9 +30,9 @@ The method returns address that your wallet provided. There is no way to change 
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -42,8 +42,8 @@ public class GetAddressExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_eth = ankrSDK.Eth;
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_eth = mirageSDK.Eth;
 	}
 
 	public async UniTaskVoid GetAddress()
@@ -75,9 +75,9 @@ To find more info on the currency units, have a look at the [Currency Units](/ga
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using Nethereum.Util;
 using Nethereum.Web3;
 using UnityEngine;
@@ -86,16 +86,16 @@ namespace DefaultNamespace
 {
     public class GetBalanceExample : MonoBehaviour
     {
-        private IAnkrSDK _ankrSDKWrapper;
+        private IMirageSDK _mirageSDKWrapper;
 
         private void Start()
         {
-            _ankrSDKWrapper = AnkrSDKFactory.GetAnkrSDKInstance("https://...");
+            _mirageSDKWrapper = MirageSDKFactory.GetMirageSDKInstance("https://...");
         }
 
         public async void GetBalance()
         {
-            var balanceInWei = await _ankrSDKWrapper.Eth.GetBalance();
+            var balanceInWei = await _mirageSDKWrapper.Eth.GetBalance();
             var etherAmount = Web3.Convert.FromWei(balanceInWei);
             var gweiAmount = Web3.Convert.FromWei(balanceInWei, UnitConversion.EthUnit.Gwei);
         }
@@ -119,9 +119,9 @@ Returns the latest block's number.
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using Nethereum.Util;
 using Nethereum.Web3;
 using UnityEngine;
@@ -130,16 +130,16 @@ namespace DefaultNamespace
 {
     public class GetBlockNumberExample : MonoBehaviour
     {
-        private IAnkrSDK _ankrSDKWrapper;
+        private IMirageSDK _mirageSDKWrapper;
 
         private void Start()
         {
-            _ankrSDKWrapper = AnkrSDKFactory.GetAnkrSDKInstance("https://...");
+            _mirageSDKWrapper = MirageSDKFactory.GetMirageSDKInstance("https://...");
         }
 
         public async void GetBalance()
         {
-            var currentBlock = await _ankrSDKWrapper.Eth.GetBlockNumber();
+            var currentBlock = await _mirageSDKWrapper.Eth.GetBlockNumber();
         }
     }
 }
@@ -165,10 +165,10 @@ Returns a transaction for the transaction hash specified.
 
 #### Code example
 
-```c plus
+```csharp
 using System;
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using UnityEngine;
 
 public class ContractExample : MonoBehaviour
@@ -178,9 +178,9 @@ public class ContractExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_contract = ankrSDK.GetContract("0x...","...");
-		_eth = ankrSDK.Eth;
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_contract = mirageSDK.GetContract("0x...","...");
+		_eth = mirageSDK.Eth;
 	}
 
 	public async void Call()
@@ -216,7 +216,7 @@ Returns the receipt of a transaction by transaction hash. Method resolves when t
 
 If contract method that you called emits an event, you can get it from [TransactionReceipt](https://github.com/Nethereum/Nethereum/blob/master/src/Nethereum.RPC/Eth/DTOs/TransactionReceipt.cs) on `ReceiptReceived` stage. But first you need to create a [DTO corresponding to a contract event](/gaming/extra/events-and-subscriptions/#event-nature).
 
-```c plus
+```csharp
 public void HandleReceipt(object sender, TransactionReceipt receipt)
 {
 	var transferEventOutput = receipt.DecodeAllEvents<DTO>();
@@ -226,10 +226,10 @@ public void HandleReceipt(object sender, TransactionReceipt receipt)
 
 #### Code example
 
-```c plus
+```csharp
 using System;
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using UnityEngine;
 
 public class ContractExample : MonoBehaviour
@@ -239,9 +239,9 @@ public class ContractExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_contract = ankrSDK.GetContract("0x...","...");
-		_eth = ankrSDK.Eth;
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_contract = mirageSDK.GetContract("0x...","...");
+		_eth = mirageSDK.Eth;
 	}
 
 	public async void Call()
@@ -285,9 +285,9 @@ Retrieves a number of transactions in the block specified.
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using Nethereum.RPC.Eth.DTOs;
 using UnityEngine;
 
@@ -295,11 +295,11 @@ namespace DefaultNamespace
 {
     public class GetTransactionCountExample : MonoBehaviour
     {
-        private IAnkrSDK _ankrSDKWrapper;
+        private IMirageSDK _mirageSDKWrapper;
 
         private void Start()
         {
-            _ankrSDKWrapper = AnkrSDKFactory.GetAnkrSDKInstance("https://...");
+            _mirageSDKWrapper = MirageSDKFactory.GetMirageSDKInstance("https://...");
         }
 
         public async void GetBalance()
@@ -307,9 +307,9 @@ namespace DefaultNamespace
             var blockHash = "0x...";
             ulong blockNumber = 99999;
             
-            var blockTransactionsCountByHash = await _ankrSDKWrapper.Eth.GetTransactionCount(blockHash);
-            var latestBlockTransactionsCount = await _ankrSDKWrapper.Eth.GetTransactionCount(BlockParameter.CreateLatest());
-            var blockTransactionsCountByNumber = await _ankrSDKWrapper.Eth.GetTransactionCount(new BlockParameter(blockNumber));
+            var blockTransactionsCountByHash = await _mirageSDKWrapper.Eth.GetTransactionCount(blockHash);
+            var latestBlockTransactionsCount = await _mirageSDKWrapper.Eth.GetTransactionCount(BlockParameter.CreateLatest());
+            var blockTransactionsCountByNumber = await _mirageSDKWrapper.Eth.GetTransactionCount(new BlockParameter(blockNumber));
         }
     }
 }
@@ -335,9 +335,9 @@ namespace DefaultNamespace
 
 #### Code sample
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using Nethereum.RPC.Eth.DTOs;
 using UnityEngine;
 
@@ -345,11 +345,11 @@ namespace DefaultNamespace
 {
     public class GetBlockWithTransactionsExample : MonoBehaviour
     {
-        private IAnkrSDK _ankrSDKWrapper;
+        private IMirageSDK _mirageSDKWrapper;
 
         private void Start()
         {
-            _ankrSDKWrapper = AnkrSDKFactory.GetAnkrSDKInstance("https://...");
+            _mirageSDKWrapper = MirageSDKFactory.GetMirageSDKInstance("https://...");
         }
 
         public async void GetBalance()
@@ -357,9 +357,9 @@ namespace DefaultNamespace
             var blockHash = "0x...";
             ulong blockNumber = 99999;
             
-            var blockByHash = await _ankrSDKWrapper.Eth.GetBlockWithTransactions(blockHash);
-            var latestBlock = await _ankrSDKWrapper.Eth.GetBlockWithTransactions(BlockParameter.CreateLatest());
-            var blockByNumber = await _ankrSDKWrapper.Eth.GetBlockWithTransactions(new BlockParameter(blockNumber));
+            var blockByHash = await _mirageSDKWrapper.Eth.GetBlockWithTransactions(blockHash);
+            var latestBlock = await _mirageSDKWrapper.Eth.GetBlockWithTransactions(BlockParameter.CreateLatest());
+            var blockByNumber = await _mirageSDKWrapper.Eth.GetBlockWithTransactions(new BlockParameter(blockNumber));
         }
     }
 }
@@ -387,9 +387,9 @@ Returns a block specified by a block number or block hash.
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using Nethereum.RPC.Eth.DTOs;
 using UnityEngine;
 
@@ -397,11 +397,11 @@ namespace DefaultNamespace
 {
     public class GetBlockWithTransactionsHashesExample : MonoBehaviour
     {
-        private IAnkrSDK _ankrSDKWrapper;
+        private IMirageSDK _mirageSDKWrapper;
 
         private void Start()
         {
-            _ankrSDKWrapper = AnkrSDKFactory.GetAnkrSDKInstance("https://...");
+            _mirageSDKWrapper = MirageSDKFactory.GetMirageSDKInstance("https://...");
         }
 
         public async void GetBalance()
@@ -409,9 +409,9 @@ namespace DefaultNamespace
             var blockHash = "0x...";
             ulong blockNumber = 99999;
             
-            var blockByHash = await _ankrSDKWrapper.Eth.GetBlockWithTransactionsHashes(blockHash);
-            var latestBlock = await _ankrSDKWrapper.Eth.GetBlockWithTransactionsHashes(BlockParameter.CreateLatest());
-            var blockByNumber = await _ankrSDKWrapper.Eth.GetBlockWithTransactionsHashes(new BlockParameter(blockNumber));
+            var blockByHash = await _mirageSDKWrapper.Eth.GetBlockWithTransactionsHashes(blockHash);
+            var latestBlock = await _mirageSDKWrapper.Eth.GetBlockWithTransactionsHashes(BlockParameter.CreateLatest());
+            var blockByNumber = await _mirageSDKWrapper.Eth.GetBlockWithTransactionsHashes(new BlockParameter(blockNumber));
         }
     }
 }
@@ -446,9 +446,9 @@ Retrieves an amount of gas for the transaction specified.
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -458,8 +458,8 @@ public class EstimateGasExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_eth = ankrSDK.Eth;
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_eth = mirageSDK.Eth;
 	}
 
 	public async UniTaskVoid EstimateGas()
@@ -494,9 +494,9 @@ Signs the data using an account address specified.
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using UnityEngine;
 
 public class SignExample : MonoBehaviour
@@ -505,8 +505,8 @@ public class SignExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_eth = ankrSDK.Eth;
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_eth = mirageSDK.Eth;
 	}
 
 	public async void SignMessage()
@@ -547,9 +547,9 @@ Sends a transaction to the network.
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -559,8 +559,8 @@ public class SendTransactionExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_eth = ankrSDK.Eth;
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_eth = mirageSDK.Eth;
 	}
 
 	public async UniTaskVoid SendTransaction()
