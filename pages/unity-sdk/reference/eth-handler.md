@@ -572,3 +572,45 @@ public class SendTransactionExample : MonoBehaviour
 	}
 }
 ```
+
+---
+
+### `WalletAddEthChain`
+
+#### Declaration
+
+> `UniTask WalletAddEthChain(EthChainData chainData)`
+
+**Parameters**:
+
+* `chainData` (EthChainData) — chain data.
+
+Add new chain to wallet.
+
+---
+
+### `WalletSwitchEthChain`
+
+#### Declaration
+
+> `UniTask WalletSwitchEthChain(EthChain chain)`
+
+**Parameters**:
+
+* `chain` (EthChain) — object with chain id.
+
+Switch wallet to given chain.
+
+---
+
+### `WalletUpdateEthChain`
+
+#### Declaration
+
+> `UniTask WalletUpdateEthChain(EthUpdateChainData chain)`
+
+**Parameters**:
+
+* `chain` (EthUpdateChainData) — chain data for update.
+
+Update existed chain data 
