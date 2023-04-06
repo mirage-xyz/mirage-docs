@@ -25,17 +25,17 @@ A class that contains methods for making real-time subscriptions for contracts' 
 
 ### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Data;
-using AnkrSDK.DTO;
-using AnkrSDK.Examples.ERC20Example;
-using AnkrSDK.Provider;
-using AnkrSDK.UseCases;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Data;
+using MirageSDK.DTO;
+using MirageSDK.Examples.ERC20Example;
+using MirageSDK.Provider;
+using MirageSDK.UseCases;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace AnkrSDK.EventListenerExample
+namespace MirageSDK.EventListenerExample
 {
 	public class EventListenerExample : UseCase
 	{
@@ -48,10 +48,10 @@ namespace AnkrSDK.EventListenerExample
 			base.ActivateUseCase();
 			
 
-			var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("https://");
-			_eth = ankrSDK.Eth;
+			var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("https://");
+			_eth = mirageSDK.Eth;
 
-			_eventSubscriber = ankrSDK.CreateSubscriber("wss://");
+			_eventSubscriber = mirageSDK.CreateSubscriber("wss://");
 			_eventSubscriber.ListenForEvents().Forget();
 			_eventSubscriber.OnOpenHandler += UniTask.Action(SubscribeWithRequest);
 		}

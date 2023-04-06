@@ -46,10 +46,10 @@ If you'd like to speed up a call that has already been applied to work but still
 
 #### Code example
 
-```c plus
+```csharp
 using System;
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using UnityEngine;
 
 public class ContractExample : MonoBehaviour
@@ -59,9 +59,9 @@ public class ContractExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_contract = ankrSDK.GetContract("0x...","...");
-		_eth = ankrSDK.Eth;
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_contract = mirageSDK.GetContract("0x...","...");
+		_eth = mirageSDK.Eth;
 	}
 
 	public async void Call()
@@ -110,9 +110,9 @@ In contrast with [CallMethod](#callmethod), this method provides the handlers fo
 To work with that method you need to implement the `ITransactionEventHandler` interface. 
 The following implementation works with `EventHandler` to provide the most flexible experience to work with a transaction lifecycle.
 
-```c plus
+```csharp
 using System;
-using AnkrSDK.Core.Infrastructure;
+using MirageSDK.Core.Infrastructure;
 using Nethereum.RPC.Eth.DTOs;
 
 public class TransactionEventDelegator : ITransactionEventHandler
@@ -158,12 +158,12 @@ Let’s look at all the methods and how they relate to a transaction lifecycle:
 * `ErrorReceived` is called when a user or the Ethereum node has rejected a transaction.
 * `ReceiptReceived` is called when a transaction has been mined.
 
-```c plus
+```csharp
 using System;
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.EventListenerExample;
-using AnkrSDK.Provider;
-using AnkrSDK.UseCases;
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.EventListenerExample;
+using MirageSDK.Provider;
+using MirageSDK.UseCases;
 using Nethereum.RPC.Eth.DTOs;
 using UnityEngine;
 
@@ -173,8 +173,8 @@ public class ERC20Example : UseCase
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_contract = ankrSDK.GetContract("0x...","...");
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_contract = mirageSDK.GetContract("0x...","...");
 	}
 
 	public void SendMint()
@@ -246,13 +246,13 @@ Retrieves a contract's past events.
 
 Find out more on events and events requests in [Events and subscriptions](/gaming/extra/events-and-subscriptions/#event-nature).
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Data;
-using AnkrSDK.DTO;
-using AnkrSDK.Examples.ERC20Example;
-using AnkrSDK.Provider;
-using AnkrSDK.UseCases;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Data;
+using MirageSDK.DTO;
+using MirageSDK.Examples.ERC20Example;
+using MirageSDK.Provider;
+using MirageSDK.UseCases;
 using Cysharp.Threading.Tasks;
 using Nethereum.RPC.Eth.DTOs;
 using UnityEngine;
@@ -264,9 +264,9 @@ public class ContractExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_contract = ankrSDK.GetContract("0x...","...");
-		_eth = ankrSDK.Eth;
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_contract = mirageSDK.GetContract("0x...","...");
+		_eth = mirageSDK.Eth;
 	}
 
 	public async UniTaskVoid GetEvents()
@@ -324,7 +324,7 @@ The function name is `balanceOf`, it takes the `owner` argument of the `address`
 
 The same information you can get from the ABI:
 
-```c plus
+```json
 ...
 {
   "constant": true,
@@ -352,7 +352,7 @@ The same information you can get from the ABI:
 
 Then the DTO will look as follows:
 
-```c plus
+```csharp
 using Nethereum.ABI.FunctionEncoding.Attributes;
 using Nethereum.Contracts;
 
@@ -370,11 +370,11 @@ To find out more information on how to convert Solidity types to C# types, take 
 
 When a `TFieldData` DTO is prepared, we can request data.
 
-```c plus
+```csharp
 using System.Numerics;
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Data.ContractMessages.ERC721;
-using AnkrSDK.Provider;
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Data.ContractMessages.ERC721;
+using MirageSDK.Provider;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -385,9 +385,9 @@ public class ContractExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_contract = ankrSDK.GetContract("0x...", "...");
-		_eth = ankrSDK.Eth;
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_contract = mirageSDK.GetContract("0x...", "...");
+		_eth = mirageSDK.Eth;
 	}
 
 	public async UniTaskVoid GetBalance()
@@ -430,12 +430,12 @@ Retrieves a gas value estimation for a contract method call specified.
 
 #### Code example
 
-```c plus
+```csharp
 using System;
 using System.Numerics;
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
-using AnkrSDK.UseCases;
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
+using MirageSDK.UseCases;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -445,8 +445,8 @@ public class ContractExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_contract = ankrSDK.GetContract("0x...", "...");
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_contract = mirageSDK.GetContract("0x...", "...");
 	}
 
 	public async UniTaskVoid CallMint()

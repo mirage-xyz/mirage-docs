@@ -1,10 +1,9 @@
-## `AnkrSDKWrapper`
+## `MirageSDKWrapper`
 
-`AnkrSDKWrapper` provides support for all platform-dependent features and implements `IAnkrSDK`.
+`MirageSDKWrapper` provides support for all platform-dependent features and implements `IMirageSDK`.
 
 **Properties**:
 
-  * `NetworkHelper` — provides an `INetworkHelper` instance.
   * `Eth` — provides an `IEthHandler` instance.
 
 ### Public methods
@@ -32,9 +31,9 @@ Provides an instance of a contract with a platform-dependant provider.
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using UnityEngine;
 
 public class ContractExample : MonoBehaviour
@@ -43,8 +42,8 @@ public class ContractExample : MonoBehaviour
 
 	private void Start()
 	{
-		var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
-		_contract = ankrSDK.GetContract("0x...","...");
+		var mirageSDK = MirageSDKFactory.GetMirageSDKInstance("http://...");
+		_contract = mirageSDK.GetContract("0x...","...");
 	}
 }
 ```
@@ -67,17 +66,17 @@ Provides an instance of subscriber to make contract event subscriptions. See mor
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Data;
-using AnkrSDK.DTO;
-using AnkrSDK.Examples.ERC20Example;
-using AnkrSDK.Provider;
-using AnkrSDK.UseCases;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Data;
+using MirageSDK.DTO;
+using MirageSDK.Examples.ERC20Example;
+using MirageSDK.Provider;
+using MirageSDK.UseCases;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace AnkrSDK.EventListenerExample
+namespace MirageSDK.EventListenerExample
 {
 	public class EventListenerExample : UseCase
 	{
@@ -87,10 +86,10 @@ namespace AnkrSDK.EventListenerExample
 
 		private void Start()
 		{			
-			var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance(ERC20ContractInformation.HttpProviderURL);
-			_eth = ankrSDK.Eth;
+			var mirageSDK = MirageSDKFactory.GetMirageSDKInstance(ERC20ContractInformation.HttpProviderURL);
+			_eth = mirageSDK.Eth;
 
-			_eventSubscriber = ankrSDK.CreateSubscriber(ERC20ContractInformation.WsProviderURL);
+			_eventSubscriber = mirageSDK.CreateSubscriber(ERC20ContractInformation.WsProviderURL);
 			_eventSubscriber.ListenForEvents().Forget();
 			_eventSubscriber.OnOpenHandler += UniTask.Action(SubscribeWithRequest);
 		}
@@ -157,18 +156,18 @@ Removes a wallet connection.
 
 #### Code example
 
-```c plus
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Provider;
+```csharp
+using MirageSDK.Core.Infrastructure;
+using MirageSDK.Provider;
 using UnityEngine;
 
 public class DisconnectExample : MonoBehaviour
 {
-	private IAnkrSDK _sdk;
+	private IMirageSDK _sdk;
 
 	private void Start()
 	{
-		_sdk = AnkrSDKFactory.GetAnkrSDKInstance("http://...");
+		_sdk = MirageSDKFactory.GetMirageSDKInstance("http://...");
 	}
 
 	private void OnDisable()

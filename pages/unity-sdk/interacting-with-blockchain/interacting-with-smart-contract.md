@@ -8,8 +8,8 @@ To start interacting with a smart contract, you need to have your smart contract
 
 The following example is a `WearableNFTExample` contract from the SDK. [Check it out](https://github.com/Ankr-network/game-unity-demo/blob/master/Assets/AnkrSDK/Examples/Scripts/WearableNFTExample/WearableNFTContractInformation.cs)
 
-```js
-namespace AnkrSDK.Examples.WearableNFTExample
+```csharp
+namespace MirageSDK.Examples.WearableNFTExample
 {
 	public class WearableNFTContractInformation
 	{
