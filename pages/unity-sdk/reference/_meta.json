@@ -1,6 +1,6 @@
 {
-  "ankr-sdk-factory": "AnkrSDKFactory",
-  "ankr-sdk-wrapper": "AnkrSDKWrapper",
+  "mirage-sdk-factory": "MirageSDKFactory",
+  "mirage-sdk-wrapper": "MirageSDKWrapper",
   "eth-handler": "EthHandler",
   "contract": "Contract",
   "contract-event-subscriber": "ContractEventSubscriber",

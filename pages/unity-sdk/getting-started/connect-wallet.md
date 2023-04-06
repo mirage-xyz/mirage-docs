@@ -17,7 +17,7 @@ Connecting a wallet via `QRCode` involves the following steps:
 1. Creating and caching a smart contract.
 2. Connecting a wallet via QRCode.
 3. Accepting connection.
-4. Creating an instance of `AnkrSDKWrapper`.
+4. Creating an instance of `MirageSDKWrapper`.
 
 ### 1. Create and cache a smart contract
 
@@ -27,11 +27,11 @@ To create and cache a smart contract, do the following:
    1. Attach it to your `GameObject` or use a Prefab. 
    2. Wait until `WalletConnect` establishes a connection to the blockchain bridge. By default, the connection is made on Start but that can be changed in editor as shown in the picture below.
       <img src="/docs/gaming/wallet-connection.png" alt="abi section" class="responsive-pic" width="600" />
-2. Use the static method below to create a new AnkrSDK instance.  
+2. Use the static method below to create a new MirageSDK instance.  
    ```
-   AnkrSDKFactory.GetAnkrSDKInstance(string ProviderURL);
+   MirageSDKFactory.GetMirageSDKInstance(string ProviderURL);
    ```
-3. Create and cache a contract by using the `IAnkrSDK` initialized instance.  
+3. Create and cache a contract by using the `IMirageSDK` initialized instance.  
    ```
    IContract GetContract(string contractAddress, string contractABI);
    ```
@@ -67,15 +67,15 @@ Occasionally, the MetaMask mobile app does not pop up by itself. Should this be 
 
 If you agree to connect, a `Session Key` is saved in `PlayerPrefs` for future use.
 
-### 4. Create an instance of `AnkrSDKWrapper`
+### 4. Create an instance of `MirageSDKWrapper`
 
-Create an instance of an `AnkrSDKWrapper` class via `AnkrSDKWrapper.GetSDKInstance()` method after successful connection to your wallet.
+Create an instance of an `MirageSDKWrapper` class via `MirageSDKWrapper.GetSDKInstance()` method after successful connection to your wallet.
 
 ```
-IAnkrSDK GetAnkrSDKInstance(string providerURI, bool autoSetup = false)
+IMirageSDK GetMirageSDKInstance(string providerURI, bool autoSetup = false)
 ```
 
-Inside ***(AnkrSDK/Examples/UseCases/LinkingAccountWallet)*** is an example script demonstrating how to link a Web3 wallet (Metamask) to a player account.
+Inside ***(MirageSDK/Examples/UseCases/LinkingAccountWallet)*** is an example script demonstrating how to link a Web3 wallet (Metamask) to a player account.
 
 ### Reference example of connecting a wallet to an account
 

@@ -4,8 +4,8 @@
 
 ### Install via package
 
-  1. Download `AnkrSDK.unitypackage` from the latest [release](https://github.com/Ankr-network/game-unity-sdk/releases).
-  2. Move the downloaded `AnkrSDK.unitypackage` package into your project's **Assets** folder.
+  1. Download `MirageSDKImporter.unitypackage` from the latest [release](https://github.com/Ankr-network/game-unity-sdk/releases).
+  2. Move the downloaded `MirageSDKImporter.unitypackage` package into your project's **Assets** folder.
   3. Select **Import all** to enable using the full scope of SDK capabilities.
 
 <img src="/docs/gaming/install-sdk.png" alt="Install SDK" class="responsive-pic" width="700" />

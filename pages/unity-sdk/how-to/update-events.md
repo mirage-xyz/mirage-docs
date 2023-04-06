@@ -179,9 +179,9 @@ So how do we send the request?
 
 To get past events you need to instantiate class `Contract` and call method `GetEvents`
 
-```
-var ankrSDK = AnkrSDKWrapper.GetSDKInstance("http://...");
-_erc20Contract = ankrSDK.GetContract("0x..", "{...}");
+```csharp
+var mirageSDK = MirageSDKWrapper.GetSDKInstance("http://...");
+_erc20Contract = mirageSDK.GetContract("0x..", "{...}");
 ...
 var events = await _erc20Contract.GetEvents<TransferEventDTO>(filtersRequest);
 ```
@@ -200,22 +200,22 @@ This requires setting up a websocket connection. If you are using Ankr RPCs, you
 
 Simply, instantiate the subscription as in the following example:
 
-```
-var ankrSDK = AnkrSDKWrapper.GetSDKInstance("https://...");
-var _eventSubscriber = ankrSDK.CreateSubscriber("wss://...");
+```csharp
+var mirageSDK = MirageSDKWrapper.GetMirageSDKInstance("https://...");
+var _eventSubscriber = mirageSDK.CreateSubscriber("wss://...");
 _eventSubscriber.ListenForEvents().Forget();
 ```
 
 You do not need to set the parameters `fromBlock` and `toBlock` because you will receive *all* events from the block until you unsubscribe.
 
-```
+```csharp
 var filtersRequest = new EventFilterRequest<TransferEventDTO>();
 filtersRequest.AddTopic("To", EthHandler.DefaultAccount);
 ```
 
 And make a subscription
 
-```
+```csharp
 var _subscription = await _eventSubscriber.Subscribe(
   filters,
   ERC20ContractInformation.ContractAddress, 
