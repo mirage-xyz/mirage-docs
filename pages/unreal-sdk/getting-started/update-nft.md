@@ -35,7 +35,7 @@ A data object providing the following information on the NFT:
 ### Code Example
 
 ```
-void UUpdateNFTExample::GetNFTInfo(FString abi_hash, int tokenId, FAnkrCallCompleteDynamicDelegate Result)
+void UUpdateNFTExample::GetNFTInfo(FString abi_hash, int tokenId, FMirageCallCompleteDynamicDelegate Result)
 {
 	http = &FHttpModule::Get();
 
@@ -61,7 +61,7 @@ void UUpdateNFTExample::GetNFTInfo(FString abi_hash, int tokenId, FAnkrCallCompl
 	FString getTokenDetailsMethodName = "getTokenDetails";
 	FString body = "{\"device_id\": \"" + deviceId + "\", \"contract_address\": \"" + ContractAddress + "\", \"abi_hash\": \"" + abi_hash + "\", \"method\": \"" + getTokenDetailsMethodName + "\", \"args\": \"" + FString::FromInt(tokenId) + "\"}";
 	
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_CALL_METHOD;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_CALL_METHOD;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -92,7 +92,7 @@ A successful request issues a ticket to come to your MetaMask wallet. The ticket
 ### Code Example
 
 ```
-void UUpdateNFTExample::UpdateNFT(FString abi_hash, FItemInfoStructure _item, FAnkrCallCompleteDynamicDelegate Result)
+void UUpdateNFTExample::UpdateNFT(FString abi_hash, FItemInfoStructure _item, FMirageCallCompleteDynamicDelegate Result)
 {
 	http = &FHttpModule::Get();
 
@@ -120,7 +120,7 @@ void UUpdateNFTExample::UpdateNFT(FString abi_hash, FItemInfoStructure _item, FA
 		}
 	});
 
-	AnkrUtility::SetLastRequest("UpdateNFT");
+	MirageUtility::SetLastRequest("UpdateNFT");
 
 	AsyncTask(ENamedThreads::AnyBackgroundThreadNormalTask, [this, Request, abi_hash, _item]()
 	{
@@ -133,7 +133,7 @@ void UUpdateNFTExample::UpdateNFT(FString abi_hash, FItemInfoStructure _item, FA
 		body.method			  = "updateTokenWithSignedMessage";
 		body.args.Add(item);
 
-		FString url = AnkrUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
+		FString url = MirageUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
 		Request->SetURL(url);
 		Request->SetVerb("POST");
 		Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);

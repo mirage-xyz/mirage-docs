@@ -65,17 +65,17 @@ You can also read through this list:
 
 <img src="/docs/gaming/game-mac-2.png" alt="create folder" class="responsive-pic" width="350" />
 
-## STEP THREE - Download Ankr SDK
+## STEP THREE - Download Mirage SDK
 
 <iframe width="600" height="400" src="https://www.youtube.com/embed/_BPf3xsOt7U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. Download the [latest release](https://github.com/Ankr-network/game-unreal-sdk/releases) of **AnkrSDK.zip** package.
+1. Download the [latest release](https://github.com/Ankr-network/game-unreal-sdk/releases) of **MirageSDK.zip** package.
 
 2. Create a new folder (if it doesn't exist) inside the project you just created and call it **Plugins**.
 
-3. Extract the downloaded **AnkrSDK.zip** contents into the **Plugins folder** you just created. 
+3. Extract the downloaded **MirageSDK.zip** contents into the **Plugins folder** you just created. 
 
-4. Delete the **AnkrSDK.zip** file if it is inside the **Plugins folder** as well. 
+4. Delete the **MirageSDK.zip** file if it is inside the **Plugins folder** as well. 
 
 <img src="/docs/gaming/game-mac-3.png" alt="create folder" class="responsive-pic" width="400" />
 
@@ -123,26 +123,26 @@ These docs are written using Xcode 13.1
 2. Open **MyGameInstance.h** and include the following code:
 
    ```
-      #include "AnkrClient.h"
+      #include "MirageClient.h"
 
       UPROPERTY()
-      UAnkrClient* ankrClient;
+      UMirageClient* ankrClient;
 
-      UFUNCTION(BlueprintCallable, Category = "ANKR SDK")
-      UAnkrClient* GetAnkrClient();
+      UFUNCTION(BlueprintCallable, Category = "MIRAGE SDK")
+      UMirageClient* GetMirageClient();
    ```
 
 3. Open **MyGameInstance.cpp** and include the following code:
 
    ```
-   UAnkrClient* UMyGameInstance::GetAnkrClient()
+   UMirageClient* UMyGameInstance::GetMirageClient()
    {
-      if (ankrClient == nullptr)
+      if (mirageClient == nullptr)
       {
-         ankrClient = NewObject<UAnkrClient>();
+         mirageClient = NewObject<UMirageClient>();
       }
 
-      return ankrClient;
+      return mirageClient;
    }
    ```
 
@@ -199,21 +199,21 @@ The following instructions are based on Windows 10.
 
 5. Check your project opens and then close it. So we can do the next important step of adding the SDK. 
 
-## STEP THREE - Download Ankr SDK
+## STEP THREE - Download Mirage SDK
 
-1. Download the [latest release](https://github.com/Ankr-network/game-unreal-sdk/releases) of **AnkrSDK.zip** package.
+1. Download the [latest release](https://github.com/Ankr-network/game-unreal-sdk/releases) of **MirageSDK.zip** package.
 
 2. Create a new folder inside the project you just created and call it **Plugins**.
 
-3. Extract the downloaded **AnkrSDK.zip** contents into the **Plugins folder** you just created. 
+3. Extract the downloaded **MirageSDK.zip** contents into the **Plugins folder** you just created. 
 
-4. Delete the **AnkrSDK.zip** file if it is inside the **Plugins folder**.
+4. Delete the **MirageSDK.zip** file if it is inside the **Plugins folder**.
 
 ## STEP FOUR - Generate a Visual Studio Project
 
 1. Open **Unreal Editor**
 
-2. If you get a notice saying **"Missing your_unreal_project_name Modules Ankr SDK"**. Select **Yes** to rebuild.
+2. If you get a notice saying **"Missing your_unreal_project_name Modules Mirage SDK"**. Select **Yes** to rebuild.
 
 3. It should now compile the project. 
 
@@ -225,10 +225,10 @@ The following instructions are based on Windows 10.
 
 Inside Visual Studio project
 
-1. Add **AnkrSDK** to **your_unreal_project_name > Source > your_unreal_project_name > your_unreal_project_name.Build.cs** as shown below:
+1. Add **MirageSDK** to **your_unreal_project_name > Source > your_unreal_project_name > your_unreal_project_name.Build.cs** as shown below:
 
    ```
-   PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AnkrSDK" });
+   PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "MirageSDK" });
    ```
 
 2. Generate a **Visual Studio Project** by right-clicking **Your_unreal_project_name.uproject'** and selecting **Generate Visual Studio project files**
@@ -241,31 +241,31 @@ Inside Visual Studio project
 
 2. Open **MyGameInstance.h** and include the following code:
 
-   ```
-      #include "AnkrClient.h"
+   ``
+      #include "MirageClient.h"
 
       UPROPERTY()
-      UAnkrClient* ankrClient;
+      UMirageClient* mirageClient;
 
-      UFUNCTION(BlueprintCallable, Category = "ANKR SDK")
-      UAnkrClient* GetAnkrClient();
+      UFUNCTION(BlueprintCallable, Category = "MIRAGE SDK")
+      UMirageClient* GetMirageClient();
    ```
 
 2. Open **MyGameInstance.cpp** and include the following code:
 
    ```
-   UAnkrClient* UMyGameInstance::GetAnkrClient()
+   UMirageClient* UMyGameInstance::GetMirageClient()
    {
-      if (ankrClient == nullptr)
+      if (mirageClient == nullptr)
       {
-         ankrClient = NewObject<UAnkrClient>();
+         mirageClient = NewObject<UMirageClient>();
       }
 
-      return ankrClient;
+      return mirageClient;
    }
    ```
 
-4. You can now add and use all the functions from the **Ankr SDK** in your game. 
+4. You can now add and use all the functions from the **Mirage SDK** in your game. 
    
    <Callout>
    Nice work!! You're all set to go

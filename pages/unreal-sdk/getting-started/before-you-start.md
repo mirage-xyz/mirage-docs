@@ -11,7 +11,7 @@ The interaction components are the following:
 
 * Frontend: Unreal Engine 5+
 * Backend:
-  * Unreal Engine uses Ankr API to interact with the blockchain.
+  * Unreal Engine uses Mirage API to interact with the blockchain.
   * Mirage handles the Unreal Engine to blockchain communication.
 
 ## SDK's functionality
@@ -29,37 +29,37 @@ Currently, the SDK supports the following functionality for Unreal Engine:
 
 ## SDK Installation
 
-1. Download the `AnkrSDK.zip` package from the latest [release](https://github.com/Ankr-network/game-unreal-sdk/releases).
-2. Unzip the `AnkrSDK.zip` package to your Unreal Project's **Plugins** folder.
+1. Download the `MirageSDK.zip` package from the latest [release](https://github.com/Ankr-network/game-unreal-sdk/releases).
+2. Unzip the `MirageSDK.zip` package to your Unreal Project's **Plugins** folder.
 3. Delete the **Binaries**, **Intermediate**, and **Saved** folders.
 4. Right-click `.uproject` and then select **Generate Visual Studio project** (or **Services** > **Generate Xcode project**) to generate either of those.
 5. Open the generated Visual Studio (or Xcode) project and check if the plugin is included inside the Game project.
 6. Locate your `GameInstance.h` if already created. If not, add the C++ class from Content Browser in Unreal Engine, check **Show All Classes** and select **GameInstance**. Name your class **MyGameInstance**.
 7. Open `MyGameInstance.h` and include the following code:
     ```
-       #include "AnkrClient.h"
+       #include "MirageClient.h"
     
        UPROPERTY()
-       UAnkrClient* ankrClient;
+       UMirageClient* mirageClient;
     
-       UFUNCTION(BlueprintCallable, Category = "ANKR SDK")
-       UAnkrClient* GetAnkrClient();
+       UFUNCTION(BlueprintCallable, Category = "MIRAGE SDK")
+       UMirageClient* GetMirageClient();
     ```
 8. Open `MyGameInstance.cpp` and include the following code:
     ```
-    UAnkrClient* UMyGameInstance::GetAnkrClient()
+    UMirageClient* UMyGameInstance::GetMirageClient()
     {
-        if (ankrClient == nullptr)
+        if (mirageClient == nullptr)
         {
-            ankrClient = NewObject<UAnkrClient>();
+            mirageClient = NewObject<UMirageClient>();
         }
     
-        return ankrClient;
+        return mirageClient;
     }
     ```
-9. Add **AnkrSDK** to your Unreal Project/Source/Unreal `Project/Build.cs` as follows:
+9. Add **MirageSDK** to your Unreal Project/Source/Unreal `Project/Build.cs` as follows:
     ```
-    PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AnkrSDK" });
+    PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "MirageSDK" });
     ```
 10. Click **Edit** > **Project Settings** > **Maps and Modes**, and select your newly created or already created **GameInstance** from the **GameInstance Class** dropdown.
-11. Now you can call all the functions in the blueprint by getting **GetGameInstance** > **GetAnkrClient**.
+11. Now you can call all the functions in the blueprint by getting **GetGameInstance** > **GetMirageClient**.

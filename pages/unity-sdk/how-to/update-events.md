@@ -186,7 +186,7 @@ _erc20Contract = mirageSDK.GetContract("0x..", "{...}");
 var events = await _erc20Contract.GetEvents<TransferEventDTO>(filtersRequest);
 ```
 
-To see a full example see [**game-unity-sdk/ERC20Example.cs**](https://github.com/Ankr-network/game-unity-sdk/blob/e5512440b1b5f10baec3299a8e0611ce28c2b100/Assets/AnkrSDK/Examples/Scripts/ERC20Example/ERC20Example.cs#L88)
+To see a full example see [**game-unity-sdk/ERC20Example.cs**](https://github.com/Ankr-network/game-unity-sdk/blob/e5512440b1b5f10baec3299a8e0611ce28c2b100/Assets/MirageSDK/Examples/Scripts/ERC20Example/ERC20Example.cs#L88)
 
 ## How to subscribe to new events
 
@@ -195,7 +195,7 @@ As well as past events, we can also subscribe to get real-time events immediatel
 <Callout>
 Websockets
 
-This requires setting up a websocket connection. If you are using Ankr RPCs, you should sign up for the [Premium Plan](https://www.ankr.com/protocol/plan/) to get a private websocket (wss) endpoint.
+This requires setting up a websocket connection. If you are using Mirage RPCs, you should sign up for the [Premium Plan](https://www.ankr.com/protocol/plan/) to get a private websocket (wss) endpoint.
 </Callout>
 
 Simply, instantiate the subscription as in the following example:
@@ -223,4 +223,4 @@ var _subscription = await _eventSubscriber.Subscribe(
 );
 ```
 
-For a full example checkout [EventListenerExample.cs](https://github.com/Ankr-network/game-unity-sdk/blob/master/Assets/AnkrSDK/Examples/Scripts/EventListenerExample/EventListenerExample.cs)
+For a full example checkout [EventListenerExample.cs](https://github.com/Ankr-network/game-unity-sdk/blob/master/Assets/MirageSDK/Examples/Scripts/EventListenerExample/EventListenerExample.cs)

@@ -1,8 +1,5 @@
 import { Callout } from "components";
-
-# Write and Read requests
-
-This page lists the functionality you can use in your game. 
+nk
 
 <Callout>
 Write vs. Read requests:
@@ -39,7 +36,7 @@ A successful request issues a ticket to come to your MetaMask wallet. The ticket
 ### Code Example
 
 ```
-void UAnkrClient::SendTransaction(FString contract, FString abi_hash, FString method, FString args, const FAnkrCallCompleteDynamicDelegate& Result)
+void UMirageClient::SendTransaction(FString contract, FString abi_hash, FString method, FString args, const FMirageCallCompleteDynamicDelegate& Result)
 {
 	http = &FHttpModule::Get();
 
@@ -51,7 +48,7 @@ void UAnkrClient::SendTransaction(FString contract, FString abi_hash, FString me
 	Request->OnProcessRequestComplete().BindLambda([Result, this](FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString content = Response->GetContentAsString();
-			UE_LOG(LogTemp, Warning, TEXT("AnkrClient - SendTransaction - GetContentAsString: %s"), *content);
+			UE_LOG(LogTemp, Warning, TEXT("MirageClient - SendTransaction - GetContentAsString: %s"), *content);
 
 			TSharedPtr<FJsonObject> JsonObject;
 			TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(content);
@@ -63,13 +60,13 @@ void UAnkrClient::SendTransaction(FString contract, FString abi_hash, FString me
 				data = ticketId;
 
 #if PLATFORM_ANDROID || PLATFORM_IOS
-				AnkrUtility::SetLastRequest("SendTransaction");
+				MirageUtility::SetLastRequest("SendTransaction");
 				FPlatformProcess::LaunchURL(session.GetCharArray().GetData(), NULL, NULL);
 #endif
 			}
 			else
 			{
-				UE_LOG(LogTemp, Error, TEXT("AnkrClient - SendTransaction - Couldn't get a valid response:\n%s"), *content);
+				UE_LOG(LogTemp, Error, TEXT("MirageClient - SendTransaction - Couldn't get a valid response:\n%s"), *content);
 			}
 
 			Result.ExecuteIfBound(content, data, "", -1, false);
@@ -77,7 +74,7 @@ void UAnkrClient::SendTransaction(FString contract, FString abi_hash, FString me
 
 	AsyncTask(ENamedThreads::AnyBackgroundThreadNormalTask, [this, Request, contract, abi_hash, method, args]()
 		{
-			FString url = AnkrUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
+			FString url = MirageUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
 			Request->SetURL(url);
 			Request->SetVerb("POST");
 			Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -127,7 +124,7 @@ Retrieves the information specified by the body parameters.
 ### Code Example
 
 ```
-void UAnkrClient::CallMethod(FString contract, FString abi_hash, FString method, FString args, const FAnkrCallCompleteDynamicDelegate& Result)
+void UMirageClient::CallMethod(FString contract, FString abi_hash, FString method, FString args, const FMirageCallCompleteDynamicDelegate& Result)
 {
 	http = &FHttpModule::Get();
 
@@ -139,7 +136,7 @@ void UAnkrClient::CallMethod(FString contract, FString abi_hash, FString method,
 	Request->OnProcessRequestComplete().BindLambda([Result, this](FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString content = Response->GetContentAsString();
-			UE_LOG(LogTemp, Warning, TEXT("AnkrClient - CallMethod - GetContentAsString: %s"), *content);
+			UE_LOG(LogTemp, Warning, TEXT("MirageClient - CallMethod - GetContentAsString: %s"), *content);
 
 			TSharedPtr<FJsonObject> JsonObject;
 			TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(content);
@@ -147,7 +144,7 @@ void UAnkrClient::CallMethod(FString contract, FString abi_hash, FString method,
 			Result.ExecuteIfBound(content, content, "", -1, false);
 		});
 
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_CALL_METHOD;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_CALL_METHOD;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -175,7 +172,7 @@ Returns the ABI hash.
 ### Code Example
 
 ```
-void UAnkrClient::SendABI(FString abi, const FAnkrCallCompleteDynamicDelegate& Result)
+void UMirageClient::SendABI(FString abi, const FMirageCallCompleteDynamicDelegate& Result)
 {
 	http = &FHttpModule::Get();
 
@@ -187,7 +184,7 @@ void UAnkrClient::SendABI(FString abi, const FAnkrCallCompleteDynamicDelegate& R
 	Request->OnProcessRequestComplete().BindLambda([Result, this](FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString content = Response->GetContentAsString();
-			UE_LOG(LogTemp, Warning, TEXT("AnkrClient - SendABI - GetContentAsString: %s"), *content);
+			UE_LOG(LogTemp, Warning, TEXT("MirageClient - SendABI - GetContentAsString: %s"), *content);
 
 			TSharedPtr<FJsonObject> JsonObject;
 			TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(content);
@@ -199,7 +196,7 @@ void UAnkrClient::SendABI(FString abi, const FAnkrCallCompleteDynamicDelegate& R
 			}
 			else
 			{
-				UE_LOG(LogTemp, Error, TEXT("AnkrClient - SendABI - Couldn't get a valid response:\n%s"), *content);
+				UE_LOG(LogTemp, Error, TEXT("MirageClient - SendABI - Couldn't get a valid response:\n%s"), *content);
 			}
 		});
 
@@ -207,7 +204,7 @@ void UAnkrClient::SendABI(FString abi, const FAnkrCallCompleteDynamicDelegate& R
 	const TCHAR* replace = TEXT("\\\"");
 	FString body = FString("{\"abi\": \"" + abi.Replace(find, replace, ESearchCase::IgnoreCase) + "\"}");
 
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_ABI;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_ABI;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -236,7 +233,7 @@ Returns a ticket validation status — whether the operation has been approved, 
 ### Code Example
 
 ```
-void UAnkrClient::SignMessage(FString message, const FAnkrCallCompleteDynamicDelegate & Result)
+void UMirageClient::SignMessage(FString message, const FMirageCallCompleteDynamicDelegate & Result)
 {
 	http = &FHttpModule::Get();
 
@@ -248,7 +245,7 @@ void UAnkrClient::SignMessage(FString message, const FAnkrCallCompleteDynamicDel
 	Request->OnProcessRequestComplete().BindLambda([Result, this](FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString content = Response->GetContentAsString();
-			UE_LOG(LogTemp, Warning, TEXT("AnkrClient - SignMessage - GetContentAsString: %s"), *content);
+			UE_LOG(LogTemp, Warning, TEXT("MirageClient - SignMessage - GetContentAsString: %s"), *content);
 
 			TSharedPtr<FJsonObject> JsonObject;
 			TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(content);
@@ -258,7 +255,7 @@ void UAnkrClient::SignMessage(FString message, const FAnkrCallCompleteDynamicDel
 				FString ticketId = JsonObject->GetStringField("ticket");
 
 #if PLATFORM_ANDROID || PLATFORM_IOS
-				AnkrUtility::SetLastRequest("SignMessage");
+				MirageUtility::SetLastRequest("SignMessage");
 				FPlatformProcess::LaunchURL(session.GetCharArray().GetData(), NULL, NULL);
 #endif
 
@@ -266,7 +263,7 @@ void UAnkrClient::SignMessage(FString message, const FAnkrCallCompleteDynamicDel
 			}
 		});
 
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_SIGN_MESSAGE;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_SIGN_MESSAGE;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -295,7 +292,7 @@ Returns a `signature` data object based on the body parameters specified.
 ### Code Example
 
 ```
-void UAnkrClient::GetSignature(FString ticket, const FAnkrCallCompleteDynamicDelegate& Result)
+void UMirageClient::GetSignature(FString ticket, const FMirageCallCompleteDynamicDelegate& Result)
 {
 	http = &FHttpModule::Get();
 
@@ -307,7 +304,7 @@ void UAnkrClient::GetSignature(FString ticket, const FAnkrCallCompleteDynamicDel
 	Request->OnProcessRequestComplete().BindLambda([Result, this](FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString content = Response->GetContentAsString();
-			UE_LOG(LogTemp, Warning, TEXT("AnkrClient - GetSignature - GetContentAsString: %s"), *content);
+			UE_LOG(LogTemp, Warning, TEXT("MirageClient - GetSignature - GetContentAsString: %s"), *content);
 
 			TSharedPtr<FJsonObject> JsonObject;
 			TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(content);
@@ -320,7 +317,7 @@ void UAnkrClient::GetSignature(FString ticket, const FAnkrCallCompleteDynamicDel
 			}
 		});
 
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_RESULT;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_RESULT;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -350,7 +347,7 @@ Returns an account address for the connected wallet's public address.
 ### Code Example
 
 ```
-void UAnkrClient::VerifyMessage(FString message, FString signature, const FAnkrCallCompleteDynamicDelegate& Result)
+void UMirageClient::VerifyMessage(FString message, FString signature, const FMirageCallCompleteDynamicDelegate& Result)
 {
 	http = &FHttpModule::Get();
 
@@ -362,7 +359,7 @@ void UAnkrClient::VerifyMessage(FString message, FString signature, const FAnkrC
 	Request->OnProcessRequestComplete().BindLambda([Result, this](FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString content = Response->GetContentAsString();
-			UE_LOG(LogTemp, Warning, TEXT("AnkrClient - VerifyMessage - GetContentAsString: %s"), *content);
+			UE_LOG(LogTemp, Warning, TEXT("MirageClient - VerifyMessage - GetContentAsString: %s"), *content);
 
 			TSharedPtr<FJsonObject> JsonObject;
 			TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Response->GetContentAsString());
@@ -373,7 +370,7 @@ void UAnkrClient::VerifyMessage(FString message, FString signature, const FAnkrC
 			}
 		});
 
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_VERIFY_MESSAGE;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_VERIFY_MESSAGE;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
