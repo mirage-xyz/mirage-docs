@@ -55,7 +55,7 @@ The smart contract code presented here is not intended for production purposes. 
 
 You have a wide range of tools to deploy a smart contract — Smart contract manager, Remix IDE, or script. When a smart contract has been compiled and deployed, several items need your attention — the contract's ABI and address. Using them, we'll create a contract instance via the SDK.
 
-Before we start writing code, let's set up the Mirage SDK in our project:
+Before we start writing code, let's [set up](/unity-sdk/setting-up/) the Mirage SDK in our project:
 
 ```solidity
 var ABI = "your contract abi";
