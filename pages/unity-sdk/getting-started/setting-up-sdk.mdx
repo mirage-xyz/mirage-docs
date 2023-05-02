@@ -2,7 +2,7 @@
 
 Before setting up an SDK, let's decipher the essence of SDK and find out how it works on the transport layer.
 
-SDKs work differently on various platforms. Therefore, for our discussion, we'll organize them into WebGL SDKs and SDKs for other platforms, and we'll be focusing our discussion on the latest one.
+SDKs work differently on various platforms. Therefore, for our discussion, we'll organize them into WebGL SDKs and SDKs for other platforms, and we'll be focusing our discussion on the latter one.
 
 First things first, to send transactions, we have to connect the mobile wallets — we do that via Wallet Connect.
 
@@ -30,11 +30,11 @@ For test purposes, you can use the `ConnectionController` class. It allows for a
 
 ## How to implement your connector
 
-The heart of the connection process is the `WallectConnect` class. It stores connection metadata and provides actions to start, finish, and pause a connection according to an application state. `WallectConnect` doesn’t extend `MonoBehaviour` — you need to implement your own `MonoBehaviour` class over it.
+The heart of the connection process is the `WalletConnect` class. It stores connection metadata and provides actions to start, finish, and pause a connection according to an application state. `WallectConnect` doesn’t extend `MonoBehaviour` — you need to implement your own `MonoBehaviour` class over it.
 
 ### Create connection
 
-To connect, you have, first, to call `Connect()` and then make sure to call the methods `OnApplicationPause()`, `Update()`, and `Quit()` in the same sequence they have been called by the Unity events in `WalletConnectUnityMonoAdapter`.
+To connect, you have, first, to call `Connect()` and then make sure to call the methods `OnApplicationPause()`, `Update()`, and `Quit()` in the same sequence as they are called by the Unity events in `WalletConnectUnityMonoAdapter`.
 
 ```c plus
 public class WalletConnectMonoBehaviourUsageExample : MonoBehaviour
@@ -90,7 +90,7 @@ public class WalletConnectUsageExample
 		var walletConnect = new WalletConnect();
 		var settings = Resources.Load<WalletConnectSettingsSO>("WalletConnectSettings");
 		walletConnect.Initialize(settings);
-		connectAdapter.Clear();
+		adapter.Clear();
 		adapter.TryAddObject(walletConnect);
 		await walletConnect.Connect();
 	}
@@ -114,7 +114,7 @@ public class ConnectProviderUsageExample
 
 The connection process is characterized in `WalletConnect` by these six statuses: `Uninitialized`, `DisconnectedNoSession`, `DisconnectedSessionCached`, `TransportConnected`, `SessionRequestSent`, and `WalletConnected`
 
-The initial status is `Uninitialized`. If we call the `WalletConnect.Connect()` method, the status is set to `DisconnectedNoSession` if no session is cached locally. If the session has been cached locally from previous usages, then the status changes to `DisconnectedSessionCached`. If the status is `DisconnectedSessionCached`, then it will transition to `WalletConnected` right after the internal transport layer web socket connection opens. If the status is `DisconnectedNoSession` then it will transition to `TransportConnected` when the transport layer web socket connection opens. `TransportConnected` transitions to `SessionRequestSent` once `WalletConnect` has sent a request to the Bridge server. After a user approves the connection in the wallet app (example: Metamask), `WalletConnect` gets a response from the Bridge server and sets the status to `WalletConnected`.
+The initial status is `Uninitialized`. If we call the `WalletConnect.Connect()` method, the status is set to `DisconnectedNoSession` if no session is cached locally. If the session has been cached locally from previous usages, then the status changes to `DisconnectedSessionCached`. If the status is `DisconnectedSessionCached`, then it will transition to `WalletConnected` right after the internal transport layer WebSocket connection opens. If the status is `DisconnectedNoSession` then it will transition to `TransportConnected` when the transport layer web socket connection opens. `TransportConnected` transitions to `SessionRequestSent` once `WalletConnect` has sent a request to the Bridge server. After a user approves the connection in the wallet app (example: Metamask), `WalletConnect` gets a response from the Bridge server and sets the status to `WalletConnected`.
 
 Note that the `WalletConnect` class provides the `SessionStatusUpdated` public generic event with current connection statuses.
 

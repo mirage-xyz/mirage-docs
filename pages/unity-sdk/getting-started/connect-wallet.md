@@ -2,12 +2,12 @@ import { Callout } from "components";
 
 # Connect wallet and authenticate
 
-Connecting to a Web3 wallet such as MetaMask via **WalletConnect** provides a link between a **Wallet Address** and a user's **Game Account**. 
+Connecting to a Web3 wallet, such as MetaMask via **WalletConnect** provides a link between a **Wallet Address** and a user's **Game Account**. 
 
 There are two ways to get a **Session Key** from your wallet. 
 
-* Connect via `QRCode` when building Desktop-based applications. Usually, it's the option used for the Standalone option (Linux, Windows, macOS machine) when the user cannot get access to their wallet directly on their machine; they have to generate a QR code and scan it with a mobile app to open a wallet there. This is also an option for you to connect while running your project in the Unity Editor playmode.
-* Connect via `WalletConnect.Instance.OpenMobileWallet` when building mobile-based applications. Usually, it's the option used for a iOS/Android device with an installed wallet app.  
+* Connect via `QRCode` when building Desktop-based applications. Usually, it's the option used for the Standalone option (Linux, Windows, macOS machine) when the user cannot access to their wallet directly on their machine; they have to generate a QR code and scan it with a mobile app to open a wallet there. This is also an option for you to connect while running your project in the Unity Editor playmode.
+* Connect via `WalletConnect.Instance.OpenMobileWallet` when building mobile-based applications. Usually, it's the option used for an iOS/Android device with an installed wallet app.  
 
 Both of these methods generate a **linking url** that creates a request in a **MetaMask wallet** to connect.
 
@@ -25,10 +25,10 @@ To create and cache a smart contract, do the following:
 
 1. Initialize a `WalletConnect` session using `WalletConnect.cs` script. 
 	1. Attach `WalletConnectUnityMonoAdapter` script to a `GameObject` in your scene.
-	3. Call `WalletConnect.Connect()` from your starter script `Awake` or `Start` method to create and connect the session.
-	4. Wait until `WalletConnect` establishes a connection to the blockchain bridge.
-	5. Wait until user approves a connection the the wallet on the wallet side.
-2. Use the static method below to create a new MirageSDK instance. You can only create this instance once `WalletConnect.Status` value is changed to `WalletConnected`. This happens only after user approves the connection on her wallet side.
+	2. Call `WalletConnect.Connect()` from your starter script `Awake` or `Start` method to create and connect the session.
+	3. Wait until `WalletConnect` establishes a connection to the blockchain bridge.
+	4. Wait until the user approves the connection the wallet on the wallet side.
+2. Use the static method below to create a new MirageSDK instance. You can only create this instance once `WalletConnect.Status` value is changed to `WalletConnected`. This happens only after user approves the connection on their wallet side.
    ```
    MirageSDKFactory.GetMirageSDKInstance(string ProviderURL);
    ```
@@ -56,12 +56,12 @@ _qrCodeImage.UpdateQRCode(connectURL);
 _qrCodeImage.SetImageActive(true);
 ```
 
-This `QRCode` should be scanned from you MetaMask mobile app. (It asks you to connect the same way you would with the non QRCode version). 
+This `QRCode` should be scanned from your MetaMask mobile app. (It asks you to connect the same way you would with the non QRCode version). 
 
 At this point, you are connected and any transactions that require the user signing a message will pop up in their MetaMask app on their phone. 
 
 <Callout>
-Occasionally, the MetaMask mobile app does not pop up by itself. Should this be case, open the app manually.
+Occasionally, the MetaMask mobile app does not pop up by itself. Should this be the case, open the app manually.
 </Callout>
 
 ### 3. Accept connection
@@ -82,7 +82,7 @@ Inside ***(MirageSDK/Examples/UseCases/LinkingAccountWallet)*** is an example sc
 
 This is an example from the SDK on how to link a Web3 wallet to a player account.
 
-1. To connect a wallet, first make an instance of a `Web3` class and call `Initialize` method after login in MetaMask
+1. To connect a wallet, first make an instance of a `Web3` class and call `Initialize` method after logging in MetaMask
 
     ```
     string provider_url = "<ethereum node url>";
@@ -98,7 +98,7 @@ This is an example from the SDK on how to link a Web3 wallet to a player account
     string signature = await web3.Sign(message); //returns the signature.
     ```
 
-3. The next step involves the backend serverside. You can view an example script [here](https://github.com/mirage-xyz/mirage-serverside-demo/blob/main/backends/signing-go/main.go). It returns a signature if authentication is successful. Below is an ***extract*** from this script:
+3. The next step involves the backend server-side. You can view an example script [here](https://github.com/mirage-xyz/mirage-serverside-demo/blob/main/backends/signing-go/main.go). It returns a signature if authentication is successful. Below is an ***extract*** from this script:
 
     ```
     package main
@@ -161,3 +161,5 @@ This is an example from the SDK on how to link a Web3 wallet to a player account
     // add address to a database
     ...
     ```
+	
+With these steps, you should now be able to connect a wallet to an account using the MirageSDK. The provided examples demonstrate how to link a Web3 wallet (such as MetaMask) to a player account and verify user ownership using signature verification.

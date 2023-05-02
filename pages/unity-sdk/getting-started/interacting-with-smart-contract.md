@@ -2,13 +2,13 @@ import { Callout } from "components";
 
 # Interact with smart contract
 
-This section walks you through the concept of a smart contract and how to interact with it.
+This section will walk you through the concept of a smart contract and how to interact with it.
 You will learn the following things:
 
   * [What's a smart contract?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#whats-a-smart-contract)
-  * [How to prepare a contract for calls?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#how-to-prepare-a-contract-for-calls)
+  * [How to prepare a contract for making calls?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#how-to-prepare-a-contract-for-calls)
   * [What's a transaction?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#whats-a-transaction)
-  * [How to interact via data-changing methods?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#interaction-via-data-changing-methods)
+  * [How to interact with data-changing methods?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#interaction-via-data-changing-methods)
   * [How to interact via data-retrieving methods?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#interaction-via-data-retrieving-methods)
 
 ## What's a smart contract?
@@ -66,7 +66,7 @@ var contract = sdkInstance.GetContract(address, ABI);
 
 ## What's a transaction?
 
-Transactions are the primary way to interact with the blockchain. Requests to the smart contract methods changing the current blockchain state involve the transactions under the hood. For instance, to make a call to our contract's `add` method, we'll create a transaction containing the method name and an argument. A transaction body contains the sender, receiver, gas, and other fields.
+Transactions are the primary way to interact with the blockchain. Requests to the smart contract methods changing the current blockchain state involve the transactions under the hood. For instance, to make a call to the contract's `add` method, we'll create a transaction containing the method name and an argument. A transaction body contains the sender, receiver, gas, and other fields.
 
 A transaction has the following lifecycle:
 
@@ -79,7 +79,7 @@ A transaction has the following lifecycle:
 
 Let’s take a closer look at our contract sample. It has a single data-changing method – `add`. So how we call it?
 
-There are two ways to call that method type on a smart contract: `CallMethod` and `Web3SendMethod`. Let’s dive into those.
+There are two ways to call that type of method on a smart contract: `CallMethod` and `Web3SendMethod`. Let’s dive into those.
 
 ### `Web3SendMethod`
 
@@ -113,7 +113,7 @@ The stages involved in the code above:
 
   3. Call `Web3SendMethod` with the arguments prepared.
 
-After the call, the methods being subscribed to [`TransactionEventDelegator`](https://github.com/Ankr-network/game-unity-sdk/blob/88f4086882c0f5a66adda0f8e5683c5ac3da6ec5/Assets/MirageSDK/Examples/Scripts/EventListenerExample/TransactionEventDelegator.cs) will execute in the order of transaction lifecycle.
+After the call, the methods are subscribed to [`TransactionEventDelegator`](https://github.com/Ankr-network/game-unity-sdk/blob/88f4086882c0f5a66adda0f8e5683c5ac3da6ec5/Assets/MirageSDK/Examples/Scripts/EventListenerExample/TransactionEventDelegator.cs) will execute in the order of transaction lifecycle.
 
 
 ### `CallMethod`
@@ -138,7 +138,7 @@ Debug.Log($"Nonce: {trx.Nonce}");
 
 ## Interaction via data-retrieving methods
 
-Retrieving data from the contract is almost as easy as adding data. But that process requires more preparation. First, you need to analyze the signature of the method that you're going to call for data retrieving.
+Retrieving data from the contract is similarly easy as adding data. But that process requires more preparation. First, you need to analyze the signature of the method that you're going to call for data retrieving.
 
 Based on that you need to prepare an entity.
 
@@ -155,11 +155,11 @@ public class GetMessage : FunctionMessage
 }
 ```
 
-For convenience, we have the code of the contract method before the entity class.
+For convenience, we have the code of the contract method before the class definition.
 
-Let's break down the parts of that entity:
+Let's break down the parts of that class:
 
-  1. The `Function` attribute defines the name and returns the contract method type.
+  1. The `Function` attribute defines the name and returns the contract type of method.
 
   2. The `GetMessage` class extends from `FunctionMessage`. There are no specific rules for class naming, but we use the `Message` postfix after a contract method name.
 
@@ -180,5 +180,5 @@ Method `GetData` returns `BigInteger` according to the [type transition between 
 
 ## Conclusion
 
-We've covered the major parts of interacting with a smart contract, but it's not an all-encompassing guide on the topic. To get more info, refer to our SDK samples. To get more info on how events can help with tracking your smart contract activity in real time, refer to this [article](/unity-sdk/how-to/update-events/).
+We've covered the major parts of interacting with a smart contract, but it's not an all-encompassing guide on the topic. To obtain more info, refer to our SDK samples. To get more info on how events can help with tracking your smart contract activity in real time, refer to this [article](/unity-sdk/how-to/update-events/).
 

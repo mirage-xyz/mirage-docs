@@ -27,7 +27,7 @@
 
   * `IContract` — returns an instance of the [Contract](/gaming/unity-sdk/reference/contract/) class.
 
-Provides an instance of a contract with a platform-dependant provider.
+Provides an instance of a contract with a platform-dependent provider.
 
 #### Code example
 
