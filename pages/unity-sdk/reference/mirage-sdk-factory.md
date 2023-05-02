@@ -2,7 +2,7 @@ import { Callout } from "components";
 
 ## `MirageSDKFactory`
 
-A class for SDK instance creation.
+This class for SDK instance creation.
 
 ### Static methods
 
@@ -17,14 +17,14 @@ A class for SDK instance creation.
 
 **Parameters**:
 
-  * `providerURI` (string) — an RPC endpoint.
-  * `networkName` (enum) — a network name.
+  * `providerURI` (string) — an RPC endpoint for the provider.
+  * `networkName` (enum) — the name of the network to use.
 
 #### Returns
 
-  * `IMirageSDK` — an SDK provider instance. 
+  * `IMirageSDK` — an instance of the SDK provider. 
 
-Creates an SDK instance with a provider URL or network name specified.
+Creates an instance of the SDK provider using either a provider URL or a network name.
 
 #### Code example
 
