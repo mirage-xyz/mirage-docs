@@ -9,7 +9,7 @@ You will learn the following things:
   * [How to prepare a contract for making calls?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#how-to-prepare-a-contract-for-calls)
   * [What's a transaction?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#whats-a-transaction)
   * [How to interact with data-changing methods?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#interaction-via-data-changing-methods)
-  * [How to interact via data-retrieving methods?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#interaction-via-data-retrieving-methods)
+  * [How to interact with data-retrieving methods?](/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/#interaction-via-data-retrieving-methods)
 
 ## What's a smart contract?
 
@@ -75,7 +75,7 @@ A transaction has the following lifecycle:
   3. `Mined`: the transaction has been written into the blockchain.
   4. `Error`: the transaction has been rejected by the network.
 
-## Interaction via data-changing methods
+## Interaction with data-changing methods
 
 Let’s take a closer look at our contract sample. It has a single data-changing method – `add`. So how we call it?
 
@@ -136,7 +136,7 @@ var trx = await _eth.GetTransaction(transactionHash);
 Debug.Log($"Nonce: {trx.Nonce}");
 ```
 
-## Interaction via data-retrieving methods
+## Interaction with data-retrieving methods
 
 Retrieving data from the contract is similarly easy as adding data. But that process requires more preparation. First, you need to analyze the signature of the method that you're going to call for data retrieving.
 
