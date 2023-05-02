@@ -67,32 +67,25 @@ Provides an instance of subscriber to make contract event subscriptions. See mor
 #### Code example
 
 ```csharp
+using MirageSDK.Base;
 using MirageSDK.Core.Infrastructure;
 using MirageSDK.Data;
 using MirageSDK.DTO;
-using MirageSDK.Examples.ERC20Example;
 using MirageSDK.Provider;
-using MirageSDK.UseCases;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace MirageSDK.EventListenerExample
 {
-	public class EventListenerExample : UseCase
+	public class EventListenerExample : UseCaseBodyUI
 	{
+		[SerializeField] 
+		private ContractInformationSO _contractInformationSO;
+		[SerializeField]
+		private ProviderInformationSO _providerInformationSO;
 		private IContractEventSubscriber _eventSubscriber;
 		private IContractEventSubscription _subscription;
 		private IEthHandler _eth;
-
-		private void Start()
-		{			
-			var mirageSDK = MirageSDKFactory.GetMirageSDKInstance(ERC20ContractInformation.HttpProviderURL);
-			_eth = mirageSDK.Eth;
-
-			_eventSubscriber = mirageSDK.CreateSubscriber(ERC20ContractInformation.WsProviderURL);
-			_eventSubscriber.ListenForEvents().Forget();
-			_eventSubscriber.OnOpenHandler += UniTask.Action(SubscribeWithRequest);
-		}
 
 		// If you know topic position then you can use EventFilterData
 		public async UniTaskVoid SubscribeWithTopics()
@@ -104,7 +97,7 @@ namespace MirageSDK.EventListenerExample
 
 			_subscription = await _eventSubscriber.Subscribe(
 				filters,
-				ERC20ContractInformation.ContractAddress, 
+				_contractInformationSO.ContractAddress, 
 				(TransferEventDTO t) => ReceiveEvent(t)
 			);
 		}
@@ -117,7 +110,7 @@ namespace MirageSDK.EventListenerExample
 
 			_subscription = await _eventSubscriber.Subscribe(
 				filtersRequest,
-				ERC20ContractInformation.ContractAddress, 
+				_contractInformationSO.ContractAddress, 
 				ReceiveEvent
 			);
 		}
@@ -132,9 +125,23 @@ namespace MirageSDK.EventListenerExample
 			_eventSubscriber.Unsubscribe(_subscription.SubscriptionId).Forget();
 		}
 
-		private void OnDestroy()
+		public override void SetUseCaseBodyActive(bool isActive)
 		{
-			_eventSubscriber.StopListen();
+			base.SetUseCaseBodyActive(isActive);
+
+			if (isActive)
+			{
+				var sdkInstance = MirageSDKFactory.GetMirageSDKInstance(_providerInformationSO.HttpProviderURL);
+				_eth = sdkInstance.Eth;
+
+				_eventSubscriber = sdkInstance.CreateSubscriber(_providerInformationSO.WsProviderURL);
+				_eventSubscriber.ListenForEvents().Forget();
+				_eventSubscriber.OnOpenHandler += UniTask.Action(SubscribeWithRequest);
+			}
+			else
+			{
+				_eventSubscriber.StopListen();
+			}
 		}
 	}
 }
@@ -172,7 +179,7 @@ public class DisconnectExample : MonoBehaviour
 
 	private void OnDisable()
 	{
-		_sdk.Disconnect(false);
+		_sdk.WalletHandler.Disconnect(false);
 	}
 }
 ```
