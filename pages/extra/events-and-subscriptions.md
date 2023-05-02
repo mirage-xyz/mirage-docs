@@ -124,13 +124,13 @@ Now, we are clear with the request, so let’s move to sending it.
 To get past events, you need to instantiate class `Contract` and call the `GetEvents` method.
 
 ```
-var ankrSDK = AnkrSDKWrapper.GetSDKInstance("http://...");
-_erc20Contract = ankrSDK.GetContract("0x..", "{...}");
+var mirageSDK = MirageDKWrapper.GetSDKInstance("http://...");
+_erc20Contract = mirageSDK.GetContract("0x..", "{...}");
 ...
 var events = await _erc20Contract.GetEvents<TransferEventDTO>(filtersRequest);
 ```
 
-To full example see on [GitHub](https://github.com/Ankr-network/game-unity-sdk/blob/e5512440b1b5f10baec3299a8e0611ce28c2b100/Assets/AnkrSDK/Examples/Scripts/ERC20Example/ERC20Example.cs#L88)
+To full example see on [GitHub](https://github.com/Ankr-network/game-unity-sdk/blob/e5512440b1b5f10baec3299a8e0611ce28c2b100/Assets/MirageSDK/Examples/Scripts/ERC20Example/ERC20Example.cs#L88)
 
 ## Subscribe to events
 
@@ -143,8 +143,8 @@ Subscribing works via WebSockets only. Request a relevant endpoint from your pro
 First, instantiate a subscriber:
 
 ```
-var ankrSDK = AnkrSDKWrapper.GetSDKInstance("https://...");
-var _eventSubscriber = ankrSDK.CreateSubscriber("wss://...");
+var mirageSDK = MirageSDKWrapper.GetSDKInstance("https://...");
+var _eventSubscriber = mirageSDK.CreateSubscriber("wss://...");
 _eventSubscriber.ListenForEvents().Forget();
 ```
 
@@ -165,4 +165,4 @@ var _subscription = await _eventSubscriber.Subscribe(
 );
 ```
 
-Full example see on [GitHub](https://github.com/Ankr-network/game-unity-sdk/blob/master/Assets/AnkrSDK/Examples/Scripts/EventListenerExample/EventListenerExample.cs)
+Full example see on [GitHub](https://github.com/Ankr-network/game-unity-sdk/blob/master/Assets/MirageSDK/Examples/Scripts/EventListenerExample/EventListenerExample.cs)

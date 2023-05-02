@@ -21,7 +21,7 @@ Installation flow:
   * Add the following URL to Package Manager:
 
     ```
-    https://github.com/Ankr-network/game-unity-sdk.git?path=Assets/AnkrSDK
+    https://github.com/Ankr-network/game-unity-sdk.git?path=Assets/MirageSDK
     ```
 
     <img src="/docs/gaming/package-mngr.png" alt="Package Manager" class="responsive-pic" width="700" />
@@ -30,15 +30,15 @@ OR
 
   * Add the following key-value pair to `Packages/manifest.json`:
     ```json
-    "com.ankr.ankrsdk": "https://github.com/Ankr-network/game-unity-sdk.git?path=Assets/AnkrSDK"
+    "com.mirage.miragesdk": "https://github.com/Ankr-network/game-unity-sdk.git?path=Assets/MirageSDK"
     ```
 
 ### Install via OpenUPM
 
-Install the package using [openupm-cli](https://github.com/openupm/openupm-cli) from [OpenUPM registry](https://openupm.com/packages/com.ankr.ankrsdk/):
+Install the package using [openupm-cli](https://github.com/openupm/openupm-cli) from [OpenUPM registry](https://openupm.com/packages/com.mirage.miragesdk/):
 
 ```shell
-openupm add com.ankr.ankrsdk
+openupm add com.mirage.miragesdk
 ```
 
 ## What's inside
@@ -49,6 +49,6 @@ The SDK is designed to make it super easy to get started with game development b
 
   * Nethereum libraries provide support for web requests using RPC over Http.
 
-  * Ankr RPC network infrastructure provides fast and easy connection to multiple chains.
+  * Mirage RPC network infrastructure provides fast and easy connection to multiple chains.
 
 <iframe width="600" height="400" src="https://www.youtube.com/embed/nuU-OvP1p1E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

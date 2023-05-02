@@ -61,9 +61,9 @@ The following instructions are based on Monterey v12.3.1.
 
    <img src="/docs/gaming/game-mac-2.png" alt="create folder" class="responsive-pic" width="350" />
 
-## STEP THREE - Download Ankr SDK
+## STEP THREE - Download Mirage SDK
 
-1. Download the [latest release](https://github.com/Ankr-network/game-unreal-sdk/releases) of **AnkrSDK.zip** package.
+1. Download the [latest release](https://github.com/Ankr-network/game-unreal-sdk/releases) of **MirageSDK.zip** package.
 
 2. Create a new folder (if it doesn't already exist) inside the project you just created and call it **Plugins**.
 

@@ -38,7 +38,7 @@ A successful request issues a ticket to come to the MetaMask wallet of the desig
 ### Code Example
 
 ```
-void UWearableNFTExample::MintCharacter(FString abi_hash, FString to, FAnkrCallCompleteDynamicDelegate Result)
+void UWearableNFTExample::MintCharacter(FString abi_hash, FString to, FMirageCallCompleteDynamicDelegate Result)
 {
 	http = &FHttpModule::Get();
 
@@ -62,7 +62,7 @@ void UWearableNFTExample::MintCharacter(FString abi_hash, FString to, FAnkrCallC
 			data = ticket;
 		}
 			
-		AnkrUtility::SetLastRequest("MintCharacter");
+		MirageUtility::SetLastRequest("MintCharacter");
 		Result.ExecuteIfBound(content, data, "", -1, false);
 	});
 
@@ -70,7 +70,7 @@ void UWearableNFTExample::MintCharacter(FString abi_hash, FString to, FAnkrCallC
 	{
 		FString safeMintMethodName = "safeMint";
 
-		FString url = AnkrUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
+		FString url = MirageUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
 		Request->SetURL(url);
 		Request->SetVerb("POST");
 		Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -106,7 +106,7 @@ A successful request issues a ticket to come to your MetaMask wallet. The ticket
 ### Code Example
 
 ```
-void UWearableNFTExample::MintItems(FString abi_hash, FString to, FAnkrCallCompleteDynamicDelegate Result)
+void UWearableNFTExample::MintItems(FString abi_hash, FString to, FMirageCallCompleteDynamicDelegate Result)
 {
 	http = &FHttpModule::Get();
 
@@ -130,7 +130,7 @@ void UWearableNFTExample::MintItems(FString abi_hash, FString to, FAnkrCallCompl
 			data = ticket;
 		}
 			
-		AnkrUtility::SetLastRequest("MintItems");
+		MirageUtility::SetLastRequest("MintItems");
 		Result.ExecuteIfBound(content, data, "", -1, false);
 	});
 
@@ -141,7 +141,7 @@ void UWearableNFTExample::MintItems(FString abi_hash, FString to, FAnkrCallCompl
 		FString args = "[\"" + to + "\", [\"" + BlueHatAddress + "\", \"" + RedHatAddress + "\", \"" + BlueShoesAddress + "\", \"" + WhiteShoesAddress + "\", \"" + RedGlassesAddress + "\", \"" + WhiteGlassesAddress + "\"], [1, 2, 3, 4, 5, 6], \"0x\"]";
 		args = args.Replace(TEXT(" "), TEXT(""));
 
-		FString url = AnkrUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
+		FString url = MirageUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
 		Request->SetURL(url);
 		Request->SetVerb("POST");
 		Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -178,7 +178,7 @@ A successful request issues a ticket to come to your MetaMask wallet. The ticket
 ### Code Example
 
 ```
-void UWearableNFTExample::GameItemSetApproval(FString abi_hash, FString callOperator, bool approved, FAnkrCallCompleteDynamicDelegate Result)
+void UWearableNFTExample::GameItemSetApproval(FString abi_hash, FString callOperator, bool approved, FMirageCallCompleteDynamicDelegate Result)
 {
 	http = &FHttpModule::Get();
 
@@ -206,7 +206,7 @@ void UWearableNFTExample::GameItemSetApproval(FString abi_hash, FString callOper
 			}
 		}
 			
-		AnkrUtility::SetLastRequest("GameItemSetApproval");
+		MirageUtility::SetLastRequest("GameItemSetApproval");
 		Result.ExecuteIfBound(content, data, "", -1, false);
 	});
 
@@ -216,7 +216,7 @@ void UWearableNFTExample::GameItemSetApproval(FString abi_hash, FString callOper
 
 		FString body = "{\"device_id\": \"" + deviceId + "\", \"contract_address\": \"" + GameItemContractAddress + "\", \"abi_hash\": \"" + abi_hash + "\", \"method\": \"" + setApprovalForAllMethodName + "\", \"args\": [\"" + GameCharacterContractAddress + "\", true ]}";
 			
-		FString url = AnkrUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
+		FString url = MirageUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
 		Request->SetURL(url);
 		Request->SetVerb("POST");
 		Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -253,7 +253,7 @@ The response comes as a data object specifying the number of tokens belonging to
 ### Code example
 
 ```
-void UWearableNFTExample::GetCharacterBalance(FString abi_hash, FString address, FAnkrCallCompleteDynamicDelegate Result)
+void UWearableNFTExample::GetCharacterBalance(FString abi_hash, FString address, FMirageCallCompleteDynamicDelegate Result)
 {
 	http = &FHttpModule::Get();
 
@@ -281,7 +281,7 @@ void UWearableNFTExample::GetCharacterBalance(FString abi_hash, FString address,
 
 	FString balanceOfMethodName = "balanceOf";
 
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_CALL_METHOD;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_CALL_METHOD;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -313,7 +313,7 @@ The response comes as a data object containing the ID of the token specified by 
 ### Code example
 
 ```
-void UWearableNFTExample::GetCharacterTokenId(FString abi_hash, int tokenBalance, FString owner, FString index, FAnkrCallCompleteDynamicDelegate Result)
+void UWearableNFTExample::GetCharacterTokenId(FString abi_hash, int tokenBalance, FString owner, FString index, FMirageCallCompleteDynamicDelegate Result)
 {
 	if (tokenBalance <= 0)
 	{
@@ -347,7 +347,7 @@ void UWearableNFTExample::GetCharacterTokenId(FString abi_hash, int tokenBalance
 
 	FString tokenOfOwnerByIndexMethodName = "tokenOfOwnerByIndex";
 
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_CALL_METHOD;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_CALL_METHOD;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -377,7 +377,7 @@ A successful request issues a ticket to come to your MetaMask wallet. The ticket
 ### Code Example
 
 ```
-void UWearableNFTExample::ChangeHat(FString abi_hash, int characterId, bool hasHat, FString hatAddress, FAnkrCallCompleteDynamicDelegate Result)
+void UWearableNFTExample::ChangeHat(FString abi_hash, int characterId, bool hasHat, FString hatAddress, FMirageCallCompleteDynamicDelegate Result)
 {
 	if (!hasHat || characterId == -1)
 	{
@@ -406,8 +406,8 @@ void UWearableNFTExample::ChangeHat(FString abi_hash, int characterId, bool hasH
 			ticket = JsonObject->GetStringField("ticket");
 		}
 			
-		if		(hatAddress.Equals(BlueHatAddress)) AnkrUtility::SetLastRequest("ChangeHatBlue");
-		else if (hatAddress.Equals(RedHatAddress))  AnkrUtility::SetLastRequest("ChangeHatRed");
+		if		(hatAddress.Equals(BlueHatAddress)) MirageUtility::SetLastRequest("ChangeHatBlue");
+		else if (hatAddress.Equals(RedHatAddress))  MirageUtility::SetLastRequest("ChangeHatRed");
 			
 		Result.ExecuteIfBound(content, ticket, "", -1, false);
 	});
@@ -418,7 +418,7 @@ void UWearableNFTExample::ChangeHat(FString abi_hash, int characterId, bool hasH
 
 		FString body = "{\"device_id\": \"" + deviceId + "\", \"contract_address\": \"" + GameCharacterContractAddress + "\", \"abi_hash\": \"" + abi_hash + "\", \"method\": \"" + changeHatMethodName + "\", \"args\": [\"" + FString::FromInt(characterId) + "\", \"" + hatAddress + "\"]}";
 
-		FString url = AnkrUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
+		FString url = MirageUtility::GetUrl() + ENDPOINT_SEND_TRANSACTION;
 		Request->SetURL(url);
 		Request->SetVerb("POST");
 		Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -452,7 +452,7 @@ The response comes as a data object containing the token address that correspond
 ### Code Example
 
 ```
-void UWearableNFTExample::GetHat(FString abi_hash, int characterId, FAnkrCallCompleteDynamicDelegate Result)
+void UWearableNFTExample::GetHat(FString abi_hash, int characterId, FMirageCallCompleteDynamicDelegate Result)
 {
 	http = &FHttpModule::Get();
 
@@ -480,7 +480,7 @@ void UWearableNFTExample::GetHat(FString abi_hash, int characterId, FAnkrCallCom
 
 	FString getHatMethodName = "getHat";
 
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_CALL_METHOD;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_CALL_METHOD;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -509,7 +509,7 @@ The response comes as a data object containing a code value indicating a specifi
 ### Code Example
 
 ```
-void UWearableNFTExample::GetTicketResult(FString ticketId, FAnkrCallCompleteDynamicDelegate Result)
+void UWearableNFTExample::GetTicketResult(FString ticketId, FMirageCallCompleteDynamicDelegate Result)
 {
 #if ENGINE_MAJOR_VERSION == 5 || (ENGINE_MAJOR_VERSION == 4 && ENGINE_MINOR_VERSION >= 26)
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = http->CreateRequest();
@@ -530,7 +530,7 @@ void UWearableNFTExample::GetTicketResult(FString ticketId, FAnkrCallCompleteDyn
 		{
 			code = 1;
 
-			if (AnkrUtility::GetLastRequest().Equals("ChangeHatBlue") || AnkrUtility::GetLastRequest().Equals("ChangeHatRed"))
+			if (MirageUtility::GetLastRequest().Equals("ChangeHatBlue") || MirageUtility::GetLastRequest().Equals("ChangeHatRed"))
 			{
 				bool result					   = JsonObject->GetBoolField("result");
 				TSharedPtr<FJsonObject> object = JsonObject->GetObjectField("data");
@@ -548,7 +548,7 @@ void UWearableNFTExample::GetTicketResult(FString ticketId, FAnkrCallCompleteDyn
 		Result.ExecuteIfBound(content, data, "", code, false);
 	});
 
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_RESULT;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_RESULT;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -577,7 +577,7 @@ The response is a data object containing an array of balances for each token. Th
 ### Code example
 
 ```
-void UWearableNFTExample::GetItemsBalance(FString abi_hash, FString address, FAnkrCallCompleteDynamicDelegate Result)
+void UWearableNFTExample::GetItemsBalance(FString abi_hash, FString address, FMirageCallCompleteDynamicDelegate Result)
 {
 	http = &FHttpModule::Get();
 
@@ -608,7 +608,7 @@ void UWearableNFTExample::GetItemsBalance(FString abi_hash, FString address, FAn
 
 	FString args = "[ [\"" + activeAccount + "\", \"" + activeAccount + "\", \"" + activeAccount + "\", \"" + activeAccount + "\", \"" + activeAccount + "\", \"" + activeAccount + "\", \"" + activeAccount + "\", \"" + activeAccount + "\", \"" + activeAccount + "\"], [\"" + BlueHatAddress + "\", \"" + RedHatAddress + "\", \"" + WhiteHatAddress + "\", \"" + BlueShoesAddress + "\", \"" + RedShoesAddress + "\", \"" + WhiteShoesAddress + "\", \"" + BlueGlassesAddress + "\", \"" + RedGlassesAddress + "\", \"" + WhiteGlassesAddress + "\"]]";
 	
-	FString url = AnkrUtility::GetUrl() + ENDPOINT_CALL_METHOD;
+	FString url = MirageUtility::GetUrl() + ENDPOINT_CALL_METHOD;
 	Request->SetURL(url);
 	Request->SetVerb("POST");
 	Request->SetHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
