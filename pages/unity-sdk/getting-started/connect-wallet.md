@@ -6,7 +6,7 @@ Connecting to a Web3 wallet such as MetaMask via **WalletConnect** provides a li
 
 There are two ways to get a **Session Key** from your wallet. 
 
-* Connect via `QRCode` when building Desktop-based applications. Usually, it's the option used for the Standalone option (Linux, Windows, macOS machine) when the user cannot get access to their wallet directly on their machine; they have to generate a QR code and scan it with a mobile app to open a wallet there.
+* Connect via `QRCode` when building Desktop-based applications. Usually, it's the option used for the Standalone option (Linux, Windows, macOS machine) when the user cannot get access to their wallet directly on their machine; they have to generate a QR code and scan it with a mobile app to open a wallet there. This is also an option for you to connect while running your project in the Unity Editor playmode.
 * Connect via `WalletConnect.Instance.OpenMobileWallet` when building mobile-based applications. Usually, it's the option used for a iOS/Android device with an installed wallet app.  
 
 Both of these methods generate a **linking url** that creates a request in a **MetaMask wallet** to connect.
@@ -24,10 +24,11 @@ Connecting a wallet via `QRCode` involves the following steps:
 To create and cache a smart contract, do the following:
 
 1. Initialize a `WalletConnect` session using `WalletConnect.cs` script. 
-   1. Attach it to your `GameObject` or use a Prefab. 
-   2. Wait until `WalletConnect` establishes a connection to the blockchain bridge. By default, the connection is made on Start but that can be changed in editor as shown in the picture below.
-      <img src="/docs/gaming/wallet-connection.png" alt="abi section" class="responsive-pic" width="600" />
-2. Use the static method below to create a new MirageSDK instance.  
+	1. Attach `WalletConnectUnityMonoAdapter` script to a `GameObject` in your scene.
+	3. Call `WalletConnect.Connect()` from your starter script `Awake` or `Start` method to create and connect the session.
+	4. Wait until `WalletConnect` establishes a connection to the blockchain bridge.
+	5. Wait until user approves a connection the the wallet on the wallet side.
+2. Use the static method below to create a new MirageSDK instance. You can only create this instance once `WalletConnect.Status` value is changed to `WalletConnected`. This happens only after user approves the connection on her wallet side.
    ```
    MirageSDKFactory.GetMirageSDKInstance(string ProviderURL);
    ```
@@ -41,7 +42,7 @@ Now you can interact with the created contract via `GetData()` and `CallMethod()
 ### 2. Connect a wallet via QRCode
 
 1. To connect with **QRCode**, use a ```QRCodeImage component```.
-This component already comes with a QRCode generator and a function that handles everything. 
+The SDK already comes with a QRCode generator and a function that handles everything. 
 
 2. Call `UpdateQRCode(string url)` by giving it a URL. 
 You can then use `.SetImageActive(bool)` to activate/deactivate the QRCode.
