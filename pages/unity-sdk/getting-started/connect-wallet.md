@@ -27,7 +27,7 @@ To create and cache a smart contract, do the following:
 	1. Attach `WalletConnectUnityMonoAdapter` script to a `GameObject` in your scene.
 	2. Call `WalletConnect.Connect()` from your starter script `Awake` or `Start` method to create and connect the session.
 	3. Wait until `WalletConnect` establishes a connection to the WalletConnect bridge and requests the wallet app to connect. The default wallet app is MetaMask, but you can change it by editing `WalletConnectSettings` scriptable object or using your own alternative instance for this settings file locally in your project.
-	4. Wait until the user approves the connection on the wallet side.
+	4. Approve the connection on the wallet side. If the platform you use is Android make sure to use the same wallet for subsequent transactions as the one that was used during the connection process.
 2. Use the static method below to create a new MirageSDK instance. You can only create this instance once `WalletConnect.Status` value is changed to `WalletConnected`. This happens only after user approves the connection on their wallet side.
    ```
    MirageSDKFactory.GetMirageSDKInstance(string ProviderURL);
