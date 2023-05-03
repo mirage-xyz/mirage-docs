@@ -1,5 +1,4 @@
 import { Callout } from "components";
-nk
 
 <Callout>
 Write vs. Read requests:
