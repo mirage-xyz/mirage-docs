@@ -8,7 +8,7 @@ To build a WebGL project you need to switch platforms:
 3. Click **Player Settings…**
 4. Go to **Player > WebGL tab > Resolution and Presentation**.
    <img src="/docs/gaming/choose-ankr-for-webgl.png" alt="Protocol landing" class="responsive-pic" width="600" />
-5. Chose a template, based on your Unity version.
+5. Choose a template, based on your Unity version.
 
 ## Add SDK support to custom template
 

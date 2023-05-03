@@ -2,14 +2,14 @@ import { Callout } from "components";
 
 # Update an NFT
 
-Making updates to the NFT e.g. adding a red hat to a character requires signing and sending a transaction.
+Making updates to the NFT, e.g. adding a red hat to a character requires signing and sending a transaction.
 
 ## Signing transactions
 All updates are transactions that must be signed via a prompt from MetaMask.
 
 ## Sending transactions
 
-There are two ways to make update transactions. 
+There are two ways to make update transactions:
 Using the **GetData** method and the **CallMethod**
 
 ### GetData method
@@ -61,13 +61,13 @@ public async void UpdateNFT()
 
 This is an example from the SDK and illustrates how to update a GameItem NFT by user request.
 
-1. Amend [GameItem.sol](https://github.com/mirage-xyz/mirage-smart-contract-example/blob/master/composable-nft/contracts/GameItem.sol) to your purposes and deploy it to network.
+1. Amend [GameItem.sol](https://github.com/mirage-xyz/mirage-smart-contract-example/blob/master/composable-nft/contracts/GameItem.sol) to your purposes and deploy it to the network.
 
     <Callout>
     Ensure that the smart contract is deployed from the same account that uses the backend to sign data.
     </Callout>
 
-2. Create an instance of `Web3` class and call `Initialize` method after login in MetaMask
+2. Create an instance of `Web3` class and call `Initialize` method after logging in MetaMask
 
     ```
     string provider_url = "<ethereum node url>";
