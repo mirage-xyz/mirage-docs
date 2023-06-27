@@ -2,24 +2,46 @@ import { Callout } from "components";
 
 # Connect wallet and authenticate
 
-Connecting to a Web3 wallet, such as MetaMask via **WalletConnect** provides a link between a **Wallet Address** and a user's **Game Account**. 
+Connecting to a Web3 wallet, such as MetaMask via **WalletConnect**, establishes a link between a **Wallet Address** and a user's **Game Account**.
 
 There are two ways to get a **Session Key** from your wallet. 
 
-* Connect via `QRCode` when building Desktop-based applications. Usually, it's the option used for the Standalone option (Linux, Windows, macOS machine) when the user cannot access to their wallet directly on their machine; they have to generate a QR code and scan it with a mobile app to open a wallet there. This is also an option for you to connect while running your project in the Unity Editor playmode.
-* Connect via `WalletConnect.Instance.OpenMobileWallet` when building mobile-based applications. Usually, it's the option used for an iOS/Android device with an installed wallet app.  
+1. Connect via QRCode: This method is typically used for desktop-based applications or when running your project in Unity Editor play mode. It involves generating a QR code that the user can scan using a mobile app to open their wallet. To connect via QRCode, follow these steps: 
 
-Both of these methods generate a **linking url** that creates a request in a **MetaMask wallet** to connect.
+* Attach the `WalletConnectUnityMonoAdapter` script to a GameObject in your scene.
 
-## Connect via QRCode
+* Get a reference to a `WalletConnect` instance using the `ConnectProvider` class and call the Connect method. Here’s an example implementation:
 
-Connecting a wallet via `QRCode` involves the following steps:
-1. Creating and caching a smart contract.
-2. Connecting a wallet via QRCode.
-3. Accepting connection.
-4. Creating an instance of `MirageSDKWrapper`.
+```
+public class ConnectProviderUsageExample
+{  
+	public async void LaunchWalletConnect()  
+	{    
+		var walletConnect = ConnectProvider<WalletConnect>.GetConnect();    
+		await walletConnect.Connect();  
+	}
+}
+```
 
-### 1. Create and cache a smart contract
+* To display the QRCode, use a `QRCodeImage` component. The SDK includes a QRCode generator and a function that handles it. Call `UpdateQRCode(string url)` with the generated URL, and use `.SetImageActive(bool)` to activate or deactivate the QRCode. Here's an example:
+
+```
+var connectURL = WalletConnect.Instance.ConnectURL;
+_qrCodeImage.UpdateQRCode(connectURL);
+_qrCodeImage.SetImageActive(true);
+
+```
+
+* Users should scan the QRCode using their MetaMask mobile app. This will initiate the connection process. If the MetaMask mobile app does not open automatically, users should manually open the app.
+
+2. Connect via `WalletConnect.OpenMobileWallet` or `WalletConnect.OpenDeepLink`: This method is typically used for mobile-based applications. The steps are similar to the QRCode method, but instead of showing and scanning a QR code, the `WalletConnect.OpenMobileWallet` or `WalletConnect.OpenDeepLink` methods are called from the mobile application.
+
+Once the user agrees to connect on the wallet side, the `WalletConnect` instance status (stored in the `WalletConnect.Status` property) will change to `WalletConnected`, and a Session Key will be saved in `PlayerPrefs` for future use.
+
+Examples demonstrating these connection methods and the general usage examples can be found in the `Examples` scene and the `ConnectionController.cs` script.
+
+
+# Create and cache a smart contract
 
 To create and cache a smart contract, do the following:
 
@@ -39,46 +61,7 @@ To create and cache a smart contract, do the following:
 
 Now you can interact with the created contract via `GetData()` and `CallMethod()`. Read more about [interacting with a smart contact](/gaming/unity-sdk/interacting-with-blockchain/interacting-with-smart-contract/). 
 
-### 2. Connect a wallet via QRCode
-
-1. To connect with **QRCode**, use a ```QRCodeImage component```.
-The SDK already comes with a QRCode generator and a function that handles everything. 
-
-2. Call `UpdateQRCode(string url)` by giving it a URL. 
-You can then use `.SetImageActive(bool)` to activate/deactivate the QRCode.
-
-Here is the way it is implemented in our **Examples**.
-We get the `ConnectURL` from a `walletconnect` Instance. Then we generate the `QRCode` from it and activate the QRCode's image so it can be scanned: 
-
-```
-var connectURL = WalletConnect.Instance.ConnectURL;
-_qrCodeImage.UpdateQRCode(connectURL);
-_qrCodeImage.SetImageActive(true);
-```
-
-This `QRCode` should be scanned from your MetaMask mobile app. (It asks you to connect the same way you would with the non QRCode version). 
-
-At this point, you are connected and any transactions that require the user signing a message will pop up in their MetaMask app on their phone. 
-
-<Callout>
-Occasionally, the MetaMask mobile app does not pop up by itself. Should this be the case, open the app manually.
-</Callout>
-
-### 3. Accept connection
-
-If you agree to connect, a `Session Key` is saved in `PlayerPrefs` for future use.
-
-### 4. Create an instance of `MirageSDKWrapper`
-
-Create an instance of an `MirageSDKWrapper` class via `MirageSDKWrapper.GetSDKInstance()` method after successful connection to your wallet.
-
-```
-IMirageSDK GetMirageSDKInstance(string providerURI, bool autoSetup = false)
-```
-
-Inside ***(MirageSDK/Examples/UseCases/LinkingAccountWallet)*** is an example script demonstrating how to link a Web3 wallet (Metamask) to a player account.
-
-### Reference example of connecting a wallet to an account
+# Reference example of connecting a wallet to an account
 
 This is an example from the SDK on how to link a Web3 wallet to a player account.
 
