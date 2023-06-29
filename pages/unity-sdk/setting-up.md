@@ -4,9 +4,11 @@
 
 ### Install via package
 
+To install using the package, follow these steps:
+
   1. Download `MirageSDKImporter.unitypackage` from the latest [release](https://github.com/Ankr-network/game-unity-sdk/releases).
   2. Move the downloaded `MirageSDKImporter.unitypackage` package into your project's **Assets** folder.
-  3. Select **Import all** to enable using the full scope of SDK capabilities.
+  3. Select “Import all” to enable the full scope of SDK capabilities.
 
 <img src="/docs/gaming/install-sdk.png" alt="Install SDK" class="responsive-pic" width="700" />
 
@@ -14,7 +16,7 @@
 
 Prerequisites:
 
-  * A Unity version that supports the `path` query parameter for git packages (Unity version `>= 2019.3.4f`1; Unity version `>= 2020.1a21`).
+  * Ensure you have a Unity version that supports the path query parameter for git packages (Unity version >= 2019.3.4f1; Unity version >= 2020.1a21).
 
 Installation flow:
 
@@ -35,7 +37,7 @@ OR
 
 ### Install via OpenUPM
 
-Install the package using [openupm-cli](https://github.com/openupm/openupm-cli) from [OpenUPM registry](https://openupm.com/packages/com.mirage.miragesdk/):
+To install the package using [openupm-cli](https://github.com/openupm/openupm-cli) from [OpenUPM registry](https://openupm.com/packages/com.mirage.miragesdk/), execute the following command:
 
 ```shell
 openupm add com.mirage.miragesdk
